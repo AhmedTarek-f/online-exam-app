@@ -1,28 +1,30 @@
 import 'dart:developer';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:online_exam_app/core/constants/const_keys.dart';
 
-abstract class TokenStorage {
+abstract class SecureStorage {
   static AndroidOptions _getAndroidOptions() =>
       const AndroidOptions(encryptedSharedPreferences: true);
   static final _storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
 
-  static Future<void> saveToken(String token) async {
+  static Future<void> saveData({
+    required String key,
+    required String value,
+  }) async {
     try {
-      await _storage.write(key: ConstKeys.tokenKey, value: token);
+      await _storage.write(key: key, value: value);
     } catch (e) {
       log('SecureStorage error: $e');
       await _storage.deleteAll();
-      await _storage.write(key: ConstKeys.tokenKey, value: token);
+      await _storage.write(key: key, value: value);
     }
   }
 
-  static Future<String?> getToken() async {
-    return await _storage.read(key: ConstKeys.tokenKey);
+  static Future<String?> getData({required String key}) async {
+    return await _storage.read(key: key);
   }
 
-  static Future<void> deleteToken() async {
-    await _storage.delete(key: ConstKeys.tokenKey);
+  static Future<void> deleteData({required String key}) async {
+    await _storage.delete(key: key);
   }
 }
