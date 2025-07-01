@@ -1,4 +1,15 @@
 abstract final class AppText {
+  // Login
+  static const String login = "Login";
+  static const String email = "Email";
+  static const String emailHint = "Enter your email";
+  static const String password = "Password";
+  static const String passwordHint = "Enter your password";
+  static const String rememberMe = "Remember me";
+  static const String forgetPassword = "Forget password?";
+  static const String donNotHaveAccount = "Don't have an account?";
+  static const String signup = "Sign up";
+
   // Validations
   static const String userNameValidation = "This user name is not valid";
   static const String phoneNumberValidation = "Phone number field is required";
