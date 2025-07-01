@@ -65,8 +65,8 @@ class CustomTextFormField extends StatelessWidget {
       textInputAction: textInputAction,
       decoration: InputDecoration(
         contentPadding: contentPadding ?? REdgeInsets.all(16),
-        filled: true,
-        fillColor: Theme.of(context).colorScheme.shadow,
+        filled: false,
+        // fillColor: Theme.of(context).colorScheme.shadow,
         label: Text(
           label,
           style:
@@ -90,7 +90,7 @@ class CustomTextFormField extends StatelessWidget {
           borderColor: Theme.of(context).colorScheme.primaryContainer,
         ),
         disabledBorder: buildOutlinedBorder(
-          borderColor: Theme.of(context).colorScheme.secondary,
+          borderColor: Theme.of(context).colorScheme.onSecondary,
         ),
         prefixIcon: prefixIcon,
         prefixIconConstraints:
