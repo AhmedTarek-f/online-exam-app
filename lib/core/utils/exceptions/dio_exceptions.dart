@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-
 import 'package:online_exam_app/core/constants/app_text.dart';
 import 'package:online_exam_app/core/utils/exceptions/failure.dart';
 import 'package:online_exam_app/core/utils/exceptions/response_exception.dart';
@@ -26,9 +25,7 @@ class DioExceptions extends Failure {
           return DioExceptions(errorMessage: AppText.unexpectedErrorOccurred);
       }
     } else {
-      return DioExceptions(
-        errorMessage: "${AppText.unexpectedError} ${error.toString()}",
-      );
+      return DioExceptions(errorMessage: error.toString());
     }
   }
 

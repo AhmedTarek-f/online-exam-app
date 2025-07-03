@@ -31,6 +31,7 @@ class CustomAppBar extends StatelessWidget {
       leading: leading,
       leadingWidth: leadingWidth,
       actions: actions,
+      titleSpacing: 0,
     );
   }
 }
