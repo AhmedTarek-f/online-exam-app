@@ -63,4 +63,13 @@ abstract class Validations {
     }
     return null;
   }
+
+  static String? otpValidation({required String? code}) {
+    if ((code?.isEmpty ?? true) || code?.trim() == "" || code == null) {
+      return AppText.otpValidation;
+    } else if (code.length < 6) {
+      return AppText.otpValidation2;
+    }
+    return null;
+  }
 }
