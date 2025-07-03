@@ -15,14 +15,50 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../api/client/api_client.dart' as _i508;
 import '../../api/client/api_module.dart' as _i272;
+import '../../api/data_source/forget_password/email_verification/remote_data_source/email_verification_remote_data_source_impl.dart'
+    as _i40;
+import '../../api/data_source/forget_password/forget_password_email/remote_data_source/forget_password_email_remote_data_source_impl.dart'
+    as _i120;
+import '../../api/data_source/forget_password/reset_password/remote_data_source/reset_password_remote_data_source_impl.dart'
+    as _i442;
 import '../../api/data_source/login/remote_data_source/login_remote_data_source_impl.dart'
     as _i221;
+import '../../data/data_source/forget_password/email_verification/remote_data_source/email_verification_remote_data_source.dart'
+    as _i449;
+import '../../data/data_source/forget_password/forget_password_email/remote_data_source/forget_password_email_remote_data_source.dart'
+    as _i40;
+import '../../data/data_source/forget_password/reset_password/remote_data_source/reset_password_remote_data_source.dart'
+    as _i787;
 import '../../data/data_source/login/remote_data_source/login_remote_data_source.dart'
     as _i684;
-import '../../data/repositories/login_repository_impl.dart' as _i919;
-import '../../domain/repositories/login_repository.dart' as _i703;
+import '../../data/repositories/forget_password/email_verification_repository_impl.dart'
+    as _i155;
+import '../../data/repositories/forget_password/forget_password_email_repository_impl.dart'
+    as _i543;
+import '../../data/repositories/forget_password/reset_password_repository_impl.dart'
+    as _i672;
+import '../../data/repositories/login/login_repository_impl.dart' as _i722;
+import '../../domain/repositories/forget_password/email_verification_repository.dart'
+    as _i167;
+import '../../domain/repositories/forget_password/forget_password_email_repository.dart'
+    as _i499;
+import '../../domain/repositories/forget_password/reset_password_repository.dart'
+    as _i884;
+import '../../domain/repositories/login/login_repository.dart' as _i300;
+import '../../domain/use_cases/forget_password/reset_password_use_case.dart'
+    as _i690;
+import '../../domain/use_cases/forget_password/send_email_verification_use_case.dart'
+    as _i808;
+import '../../domain/use_cases/forget_password/verify_email_use_case.dart'
+    as _i513;
 import '../../domain/use_cases/login/login_with_email_and_password_use_case.dart'
     as _i197;
+import '../../presentation/forget_password/email_verification/views_model/email_verification_cubit.dart'
+    as _i188;
+import '../../presentation/forget_password/forget_password_email/views_model/forget_password_email_cubit.dart'
+    as _i624;
+import '../../presentation/forget_password/reset_password/views_model/reset_password_cubit.dart'
+    as _i650;
 import '../../presentation/login/views_model/login_cubit.dart' as _i521;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -35,21 +71,81 @@ extension GetItInjectableX on _i174.GetIt {
     final apiModule = _$ApiModule();
     gh.singleton<_i361.Dio>(() => apiModule.provideDio());
     gh.factory<_i508.ApiClient>(() => _i508.ApiClient(gh<_i361.Dio>()));
+    gh.factory<_i40.ForgetPasswordEmailRemoteDataSource>(
+      () => _i120.ForgetPasswordEmailRemoteDataSourceImpl(
+        apiClient: gh<_i508.ApiClient>(),
+      ),
+    );
     gh.factory<_i684.LoginRemoteDataSource>(
       () => _i221.LoginRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()),
     );
-    gh.factory<_i703.LoginRepository>(
-      () => _i919.LoginRepositoryImpl(
+    gh.factory<_i499.ForgetPasswordEmailRepository>(
+      () => _i543.ForgetPasswordEmailRepositoryImpl(
+        forgetPasswordEmailRemoteDataSource:
+            gh<_i40.ForgetPasswordEmailRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i787.ResetPasswordRemoteDataSource>(
+      () => _i442.ResetPasswordRemoteDataSourceImpl(
+        apiClient: gh<_i508.ApiClient>(),
+      ),
+    );
+    gh.factory<_i449.EmailVerificationRemoteDataSource>(
+      () => _i40.EmailVerificationRemoteDataSourceImpl(
+        apiClient: gh<_i508.ApiClient>(),
+      ),
+    );
+    gh.factory<_i300.LoginRepository>(
+      () => _i722.LoginRepositoryImpl(
         loginRemoteDataSource: gh<_i684.LoginRemoteDataSource>(),
       ),
     );
+    gh.factory<_i884.ResetPasswordRepository>(
+      () => _i672.ResetPasswordRepositoryImpl(
+        resetPasswordRemoteDataSource:
+            gh<_i787.ResetPasswordRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i808.SendEmailVerificationUseCase>(
+      () => _i808.SendEmailVerificationUseCase(
+        gh<_i499.ForgetPasswordEmailRepository>(),
+      ),
+    );
+    gh.factory<_i690.ResetPasswordUseCase>(
+      () => _i690.ResetPasswordUseCase(gh<_i884.ResetPasswordRepository>()),
+    );
     gh.factory<_i197.LoginWithEmailAndPasswordUseCase>(
-      () => _i197.LoginWithEmailAndPasswordUseCase(gh<_i703.LoginRepository>()),
+      () => _i197.LoginWithEmailAndPasswordUseCase(gh<_i300.LoginRepository>()),
+    );
+    gh.factory<_i650.ResetPasswordCubit>(
+      () => _i650.ResetPasswordCubit(
+        resetPasswordUseCase: gh<_i690.ResetPasswordUseCase>(),
+      ),
+    );
+    gh.factory<_i167.EmailVerificationRepository>(
+      () => _i155.EmailVerificationRepositoryImpl(
+        emailVerificationRemoteDataSource:
+            gh<_i449.EmailVerificationRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i624.ForgetPasswordEmailCubit>(
+      () => _i624.ForgetPasswordEmailCubit(
+        sendEmailVerificationUseCase: gh<_i808.SendEmailVerificationUseCase>(),
+      ),
     );
     gh.factory<_i521.LoginCubit>(
       () => _i521.LoginCubit(
         loginWithEmailAndPasswordUseCase:
             gh<_i197.LoginWithEmailAndPasswordUseCase>(),
+      ),
+    );
+    gh.factory<_i513.VerifyEmailUseCase>(
+      () => _i513.VerifyEmailUseCase(gh<_i167.EmailVerificationRepository>()),
+    );
+    gh.factory<_i188.EmailVerificationCubit>(
+      () => _i188.EmailVerificationCubit(
+        sendEmailVerificationUseCase: gh<_i808.SendEmailVerificationUseCase>(),
+        verifyEmailUseCase: gh<_i513.VerifyEmailUseCase>(),
       ),
     );
     return this;
