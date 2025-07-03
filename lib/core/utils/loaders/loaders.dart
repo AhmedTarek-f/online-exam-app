@@ -1,7 +1,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 abstract class Loaders {
   static showSuccessMessage({
@@ -17,7 +16,7 @@ abstract class Loaders {
         style: Theme.of(context).textTheme.bodyLarge,
         textAlign: TextAlign.start,
       ),
-      icon: Icon(Iconsax.warning_2_copy, color: Colors.white, size: 28.r),
+      icon: Icon(Icons.info_outline_rounded, color: Colors.white, size: 28.r),
       backgroundColor: Colors.green,
       boxShadows: const [
         BoxShadow(
@@ -46,7 +45,7 @@ abstract class Loaders {
         style: Theme.of(context).textTheme.bodyLarge,
         textAlign: TextAlign.start,
       ),
-      icon: Icon(Iconsax.warning_2_copy, color: Colors.white, size: 28.r),
+      icon: Icon(Icons.warning_amber_outlined, color: Colors.white, size: 28.r),
       backgroundColor: Colors.orangeAccent,
       boxShadows: const [
         BoxShadow(
@@ -75,7 +74,7 @@ abstract class Loaders {
         style: Theme.of(context).textTheme.bodyLarge,
         textAlign: TextAlign.start,
       ),
-      icon: Icon(Iconsax.warning_2_copy, color: Colors.white, size: 28.r),
+      icon: Icon(Icons.info_outline_rounded, color: Colors.white, size: 28.r),
       backgroundColor: Colors.redAccent,
       boxShadows: const [
         BoxShadow(
