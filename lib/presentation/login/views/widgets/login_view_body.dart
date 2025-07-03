@@ -21,6 +21,11 @@ class LoginViewBody extends StatelessWidget {
             message: state.errorData.message,
             context: context,
           );
+        } else if (state is LoginSuccessState) {
+          Loaders.showSuccessMessage(
+            message: "Logged in successfully",
+            context: context,
+          );
         }
       },
       child: SingleChildScrollView(

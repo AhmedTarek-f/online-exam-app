@@ -14,7 +14,9 @@ class LoginButton extends StatelessWidget {
     final controller = BlocProvider.of<LoginCubit>(context);
     return BlocBuilder<LoginCubit, LoginState>(
       buildWhen: (previous, current) =>
-          current is LoginLoadingState || current is LoginFailureState,
+          current is LoginLoadingState ||
+          current is LoginFailureState ||
+          current is LoginSuccessState,
       builder: (context, state) => state is LoginLoadingState
           ? const LoadingButton()
           : CustomElevatedButton(
