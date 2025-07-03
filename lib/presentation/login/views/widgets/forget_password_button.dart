@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam_app/core/constants/app_text.dart';
+import 'package:online_exam_app/core/router/route_names.dart';
 
 class ForgetPasswordButton extends StatelessWidget {
   const ForgetPasswordButton({super.key});
@@ -10,7 +11,9 @@ class ForgetPasswordButton extends StatelessWidget {
     return Align(
       alignment: AlignmentDirectional.centerEnd,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(RouteNames.forgetPasswordEmail);
+        },
         borderRadius: BorderRadius.circular(30.r),
         highlightColor: Theme.of(
           context,

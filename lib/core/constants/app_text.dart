@@ -10,7 +10,33 @@ abstract final class AppText {
   static const String donNotHaveAccount = "Don't have an account?";
   static const String signup = "Sign up";
 
+  //Forget password
+  static const forgetPassword2 = "Forget password";
+  static const forgetPasswordMessage =
+      "Please enter your email associated to your account";
+  static const continueText = "Continue";
+  static const emailVerificationMessage =
+      "A verification code has been successfully sent to your email";
+  static const emailVerification = "Email verification";
+  static const emailVerificationMessage2 =
+      "Please enter your code that send to your email address ";
+  static const String otpValidation =
+      "The code sent to your email address is required";
+  static const String otpValidation2 = "You have to enter the 6-digit code";
+  static const String didNotReceiveCode = "Didn't receive code?";
+  static const String resend = "Resend";
+  static const String resetPassword = "Reset password";
+  static const String resetPasswordMessage =
+      "Password must not be empty and must contain 6 characters with upper case letter and one number at least";
+  static const String newPassword = "New password";
+  static const String newPasswordHint = "Enter you password";
+  static const String confirmPassword = "Confirm password";
+  static const String resetPasswordSuccess =
+      "Your password has been successfully reset";
+
   // Validations
+  static const String connectionValidation =
+      "Please check your internet connection and try again";
   static const String userNameValidation = "This user name is not valid";
   static const String phoneNumberValidation = "Phone number field is required";
   static const String phoneNumberValidation2 =

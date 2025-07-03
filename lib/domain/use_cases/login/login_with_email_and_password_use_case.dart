@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
-import 'package:online_exam_app/domain/repositories/login_repository.dart';
+import 'package:online_exam_app/domain/repositories/login/login_repository.dart';
 
 @injectable
 class LoginWithEmailAndPasswordUseCase {
