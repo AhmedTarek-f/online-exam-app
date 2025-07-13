@@ -1,4 +1,16 @@
 abstract final class AppText {
+  // signup
+  static const String userName = "User name";
+  static const String userNameHint = "Enter you user name";
+  static const String firstName = "First name";
+  static const String firstNameHint = "Enter first name";
+  static const String lastName = "Last name";
+  static const String lastNameHint = "Enter last name";
+  static const String confirmPasswordHint = "Confirm password";
+  static const String phoneNumber = "Phone number";
+  static const String phoneNumberHint = "Enter phone number";
+  static const String alreadyHaveAccount = "Already have an account?";
+
   // Login
   static const String login = "Login";
   static const String email = "Email";
@@ -9,6 +21,16 @@ abstract final class AppText {
   static const String forgetPassword = "Forget password?";
   static const String donNotHaveAccount = "Don't have an account?";
   static const String signup = "Sign up";
+  static const String signupDots = "Signing Up...";
+
+  //DashBoard
+  static const String language = "Language";
+  static const String math = "Math";
+  static const String art = "Art";
+  static const String science = "Science";
+  static const String search = "Search";
+  static const String survey = "Survey";
+  static const String browseBySubject = "Browse by subject";
 
   //Forget password
   static const forgetPassword2 = "Forget password";
@@ -38,6 +60,7 @@ abstract final class AppText {
   static const String connectionValidation =
       "Please check your internet connection and try again";
   static const String userNameValidation = "This user name is not valid";
+  static const String emptyTextValidation = 'This field is required';
   static const String phoneNumberValidation = "Phone number field is required";
   static const String phoneNumberValidation2 =
       "Phone Number should consist of 11 digits";

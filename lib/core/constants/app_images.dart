@@ -5,4 +5,5 @@ abstract final class AppImages {
   static const String language = "assets/images/language.png";
   static const String math = "assets/images/math.png";
   static const String science = "assets/images/science.png";
+  static const String appImage = "assets/images/app_image.png";
 }

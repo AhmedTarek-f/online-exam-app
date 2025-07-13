@@ -10,7 +10,7 @@ class LoginResponse {
   @JsonKey(name: "token")
   final String? token;
   @JsonKey(name: "userLoginData")
-  final UserLoginModel? userLoginData;
+  final UserModel? userLoginData;
 
   LoginResponse({this.message, this.token, this.userLoginData});
 
