@@ -4,7 +4,7 @@ import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
 part 'user_login_model.g.dart';
 
 @JsonSerializable()
-class UserLoginModel {
+class UserModel {
   @JsonKey(name: "_id")
   final String? id;
   @JsonKey(name: "username")
@@ -24,7 +24,7 @@ class UserLoginModel {
   @JsonKey(name: "createdAt")
   final String? createdAt;
 
-  UserLoginModel({
+  UserModel({
     this.id,
     this.username,
     this.firstName,
@@ -36,12 +36,12 @@ class UserLoginModel {
     this.createdAt,
   });
 
-  factory UserLoginModel.fromJson(Map<String, dynamic> json) {
-    return _$UserLoginModelFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return _$UserModelFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    return _$UserLoginModelToJson(this);
+    return _$UserModelToJson(this);
   }
 
   UserLoginEntity toUserLoginEntity() {

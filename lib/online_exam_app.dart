@@ -19,7 +19,7 @@ class OnlineExamApp extends StatelessWidget {
         darkTheme: AppTheme.lightTheme,
         themeMode: ThemeMode.dark,
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: RouteNames.login,
+        initialRoute: RouteNames.splash,
       ),
     );
   }

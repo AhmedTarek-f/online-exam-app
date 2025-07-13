@@ -3,12 +3,12 @@ import 'package:online_exam_app/api/client/api_client.dart';
 import 'package:online_exam_app/api/requests/login_request/login_request.dart';
 import 'package:online_exam_app/core/constants/app_text.dart';
 import 'package:online_exam_app/core/constants/const_keys.dart';
-import 'package:online_exam_app/core/utils/connection_manager/connection_manager.dart';
-import 'package:online_exam_app/core/utils/exam_method_helper.dart';
-import 'package:online_exam_app/core/utils/exceptions/dio_exceptions.dart';
-import 'package:online_exam_app/core/utils/secure_storage/secure_storage.dart';
 import 'package:online_exam_app/data/data_source/login/remote_data_source/login_remote_data_source.dart';
 import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
+import 'package:online_exam_app/utils/connection_manager/connection_manager.dart';
+import 'package:online_exam_app/utils/exam_method_helper.dart';
+import 'package:online_exam_app/utils/exceptions/dio_exceptions.dart';
+import 'package:online_exam_app/utils/secure_storage/secure_storage.dart';
 
 @Injectable(as: LoginRemoteDataSource)
 class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
@@ -31,7 +31,9 @@ class LoginRemoteDataSourceImpl implements LoginRemoteDataSource {
           key: ConstKeys.tokenKey,
           value: response.token ?? "",
         );
-        return response.userLoginData?.toUserLoginEntity();
+        var userData = response.userLoginData?.toUserLoginEntity();
+        ExamMethodHelper.userData = userData;
+        return userData;
       } else {
         throw AppText.connectionValidation;
       }
