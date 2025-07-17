@@ -6,4 +6,6 @@ abstract class RouteNames {
   static const String resetPassword = "/resetPasswordView";
   static const String signup = '/signupView';
   static const String dashboard = '/dashboardView';
+  static const String homeView = '/homeView';
+  static const String profileView = '/profileView';
 }
