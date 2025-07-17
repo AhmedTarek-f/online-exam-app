@@ -68,116 +68,83 @@ import '../../presentation/auth/forget_password/reset_password/views_model/reset
     as _i941;
 import '../../presentation/auth/login/views_model/login_cubit.dart' as _i512;
 import '../../presentation/auth/signup/views_model/signup_cubit.dart' as _i751;
-import '../../presentation/dashboard/domain/controllers/home_controller.dart'
-    as _i305;
 import '../../presentation/dashboard/presentation/cubits/home_cubit.dart'
     as _i69;
+import '../../presentation/dashboard/presentation/cubits/nav_bar_cuibts/nav_bar_cubit.dart'
+    as _i826;
 
 extension GetItInjectableX on _i174.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
+// initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) {
-    final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final gh = _i526.GetItHelper(
+      this,
+      environment,
+      environmentFilter,
+    );
     final apiModule = _$ApiModule();
     gh.singleton<_i361.Dio>(() => apiModule.provideDio());
     gh.lazySingleton<_i69.HomeCubit>(() => _i69.HomeCubit());
-    gh.factory<_i305.HomeController>(
-      () => _i305.HomeController(gh<_i69.HomeCubit>()),
-    );
+    gh.lazySingleton<_i826.NavBarCubit>(() => _i826.NavBarCubit());
     gh.factory<_i508.ApiClient>(() => _i508.ApiClient(gh<_i361.Dio>()));
-    gh.factory<_i40.ForgetPasswordEmailRemoteDataSource>(
-      () => _i120.ForgetPasswordEmailRemoteDataSourceImpl(
-        apiClient: gh<_i508.ApiClient>(),
-      ),
-    );
-    gh.factory<_i684.LoginRemoteDataSource>(
-      () => _i221.LoginRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()),
-    );
-    gh.factory<_i499.ForgetPasswordEmailRepository>(
-      () => _i543.ForgetPasswordEmailRepositoryImpl(
-        forgetPasswordEmailRemoteDataSource:
-            gh<_i40.ForgetPasswordEmailRemoteDataSource>(),
-      ),
-    );
-    gh.factory<_i879.SignupRemoteDataSource>(
-      () => _i354.SignupRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()),
-    );
-    gh.factory<_i787.ResetPasswordRemoteDataSource>(
-      () => _i442.ResetPasswordRemoteDataSourceImpl(
-        apiClient: gh<_i508.ApiClient>(),
-      ),
-    );
-    gh.factory<_i449.EmailVerificationRemoteDataSource>(
-      () => _i40.EmailVerificationRemoteDataSourceImpl(
-        apiClient: gh<_i508.ApiClient>(),
-      ),
-    );
-    gh.factory<_i300.LoginRepository>(
-      () => _i722.LoginRepositoryImpl(
-        loginRemoteDataSource: gh<_i684.LoginRemoteDataSource>(),
-      ),
-    );
-    gh.factory<_i884.ResetPasswordRepository>(
-      () => _i672.ResetPasswordRepositoryImpl(
-        resetPasswordRemoteDataSource:
-            gh<_i787.ResetPasswordRemoteDataSource>(),
-      ),
-    );
-    gh.factory<_i808.SendEmailVerificationUseCase>(
-      () => _i808.SendEmailVerificationUseCase(
-        gh<_i499.ForgetPasswordEmailRepository>(),
-      ),
-    );
+    gh.factory<_i40.ForgetPasswordEmailRemoteDataSource>(() =>
+        _i120.ForgetPasswordEmailRemoteDataSourceImpl(
+            apiClient: gh<_i508.ApiClient>()));
+    gh.factory<_i684.LoginRemoteDataSource>(() =>
+        _i221.LoginRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()));
+    gh.factory<_i499.ForgetPasswordEmailRepository>(() =>
+        _i543.ForgetPasswordEmailRepositoryImpl(
+            forgetPasswordEmailRemoteDataSource:
+                gh<_i40.ForgetPasswordEmailRemoteDataSource>()));
+    gh.factory<_i879.SignupRemoteDataSource>(() =>
+        _i354.SignupRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()));
+    gh.factory<_i787.ResetPasswordRemoteDataSource>(() =>
+        _i442.ResetPasswordRemoteDataSourceImpl(
+            apiClient: gh<_i508.ApiClient>()));
+    gh.factory<_i449.EmailVerificationRemoteDataSource>(() =>
+        _i40.EmailVerificationRemoteDataSourceImpl(
+            apiClient: gh<_i508.ApiClient>()));
+    gh.factory<_i300.LoginRepository>(() => _i722.LoginRepositoryImpl(
+        loginRemoteDataSource: gh<_i684.LoginRemoteDataSource>()));
+    gh.factory<_i884.ResetPasswordRepository>(() =>
+        _i672.ResetPasswordRepositoryImpl(
+            resetPasswordRemoteDataSource:
+                gh<_i787.ResetPasswordRemoteDataSource>()));
+    gh.factory<_i808.SendEmailVerificationUseCase>(() =>
+        _i808.SendEmailVerificationUseCase(
+            gh<_i499.ForgetPasswordEmailRepository>()));
     gh.factory<_i690.ResetPasswordUseCase>(
-      () => _i690.ResetPasswordUseCase(gh<_i884.ResetPasswordRepository>()),
-    );
-    gh.factory<_i415.SignupRepository>(
-      () => _i881.SignupRepositoryImpl(
-        signupRemoteDataSource: gh<_i879.SignupRemoteDataSource>(),
-      ),
-    );
-    gh.factory<_i197.LoginWithEmailAndPasswordUseCase>(
-      () => _i197.LoginWithEmailAndPasswordUseCase(gh<_i300.LoginRepository>()),
-    );
-    gh.factory<_i941.ResetPasswordCubit>(
-      () => _i941.ResetPasswordCubit(
-        resetPasswordUseCase: gh<_i690.ResetPasswordUseCase>(),
-      ),
-    );
+        () => _i690.ResetPasswordUseCase(gh<_i884.ResetPasswordRepository>()));
+    gh.factory<_i415.SignupRepository>(() => _i881.SignupRepositoryImpl(
+        signupRemoteDataSource: gh<_i879.SignupRemoteDataSource>()));
+    gh.factory<_i197.LoginWithEmailAndPasswordUseCase>(() =>
+        _i197.LoginWithEmailAndPasswordUseCase(gh<_i300.LoginRepository>()));
+    gh.factory<_i941.ResetPasswordCubit>(() => _i941.ResetPasswordCubit(
+        resetPasswordUseCase: gh<_i690.ResetPasswordUseCase>()));
     gh.factory<_i139.SignupUseCase>(
-      () => _i139.SignupUseCase(gh<_i415.SignupRepository>()),
-    );
-    gh.factory<_i167.EmailVerificationRepository>(
-      () => _i155.EmailVerificationRepositoryImpl(
-        emailVerificationRemoteDataSource:
-            gh<_i449.EmailVerificationRemoteDataSource>(),
-      ),
-    );
+        () => _i139.SignupUseCase(gh<_i415.SignupRepository>()));
+    gh.factory<_i167.EmailVerificationRepository>(() =>
+        _i155.EmailVerificationRepositoryImpl(
+            emailVerificationRemoteDataSource:
+                gh<_i449.EmailVerificationRemoteDataSource>()));
     gh.factory<_i751.SignUpCubit>(
-      () => _i751.SignUpCubit(gh<_i139.SignupUseCase>()),
-    );
-    gh.factory<_i206.ForgetPasswordEmailCubit>(
-      () => _i206.ForgetPasswordEmailCubit(
-        sendEmailVerificationUseCase: gh<_i808.SendEmailVerificationUseCase>(),
-      ),
-    );
-    gh.factory<_i512.LoginCubit>(
-      () => _i512.LoginCubit(
+        () => _i751.SignUpCubit(gh<_i139.SignupUseCase>()));
+    gh.factory<_i206.ForgetPasswordEmailCubit>(() =>
+        _i206.ForgetPasswordEmailCubit(
+            sendEmailVerificationUseCase:
+                gh<_i808.SendEmailVerificationUseCase>()));
+    gh.factory<_i512.LoginCubit>(() => _i512.LoginCubit(
         loginWithEmailAndPasswordUseCase:
-            gh<_i197.LoginWithEmailAndPasswordUseCase>(),
-      ),
-    );
-    gh.factory<_i513.VerifyEmailUseCase>(
-      () => _i513.VerifyEmailUseCase(gh<_i167.EmailVerificationRepository>()),
-    );
-    gh.factory<_i533.EmailVerificationCubit>(
-      () => _i533.EmailVerificationCubit(
-        sendEmailVerificationUseCase: gh<_i808.SendEmailVerificationUseCase>(),
-        verifyEmailUseCase: gh<_i513.VerifyEmailUseCase>(),
-      ),
-    );
+            gh<_i197.LoginWithEmailAndPasswordUseCase>()));
+    gh.factory<_i513.VerifyEmailUseCase>(() =>
+        _i513.VerifyEmailUseCase(gh<_i167.EmailVerificationRepository>()));
+    gh.factory<_i533.EmailVerificationCubit>(() => _i533.EmailVerificationCubit(
+          sendEmailVerificationUseCase:
+              gh<_i808.SendEmailVerificationUseCase>(),
+          verifyEmailUseCase: gh<_i513.VerifyEmailUseCase>(),
+        ));
     return this;
   }
 }
