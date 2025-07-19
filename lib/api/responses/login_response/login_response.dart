@@ -9,7 +9,7 @@ class LoginResponse {
   final String? message;
   @JsonKey(name: "token")
   final String? token;
-  @JsonKey(name: "userLoginData")
+  @JsonKey(name: "user")
   final UserModel? userLoginData;
 
   LoginResponse({this.message, this.token, this.userLoginData});
