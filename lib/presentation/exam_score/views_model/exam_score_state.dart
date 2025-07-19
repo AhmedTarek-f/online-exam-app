@@ -9,9 +9,29 @@ final class ExamScoreInitial extends ExamScoreState {
 
 /*
 *
-*   const ExamScoreState({this.scoreData});
-  final ProgressScoreEntity? scoreData;
+final class ExamScoreInitial extends ExamScoreState {
+  ExamScoreInitial({
+    this.examScoreData,
+    this.percentageDecimal,
+    this.percentage,
+  });
+  final ProgressScoreEntity? examScoreData;
+  final double? percentageDecimal;
+  final String? percentage;
+  ExamScoreInitial copyWith({
+    ProgressScoreEntity? examScoreData,
+    double? percentageDecimal,
+    String? percentage,
+  }) {
+    return ExamScoreInitial(
+      examScoreData: examScoreData ?? this.examScoreData,
+      percentage: percentage ?? this.percentage,
+      percentageDecimal: percentageDecimal ?? this.percentageDecimal,
+    );
+  }
+
   @override
-  List<Object?> get props => [scoreData];
+  List<Object?> get props => [examScoreData, percentageDecimal, percentage];
+}
 *
 * */

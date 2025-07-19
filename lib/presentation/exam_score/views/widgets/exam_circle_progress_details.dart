@@ -12,6 +12,7 @@ class ExamCircleProgressDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = BlocProvider.of<ExamScoreCubit>(context);
+    final theme = Theme.of(context);
     return Row(
       children: [
         CircularPercentIndicator(
@@ -21,10 +22,10 @@ class ExamCircleProgressDetails extends StatelessWidget {
           percent: controller.percentageDecimal,
           center: Text(
             controller.percentage,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: theme.textTheme.titleLarge,
           ),
           circularStrokeCap: CircularStrokeCap.round,
-          progressColor: Theme.of(context).primaryColor,
+          progressColor: theme.colorScheme.primary,
         ),
         const RSizedBox(width: 23),
         Expanded(
@@ -38,19 +39,18 @@ class ExamCircleProgressDetails extends StatelessWidget {
                     Expanded(
                       child: Text(
                         AppText.correct,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Theme.of(context).colorScheme.primary,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: theme.colorScheme.primary,
                         ),
                       ),
                     ),
                     SmallCircleText(
                       text: controller.examScoreData.correctAnswers.toString(),
-                      borderColor: Theme.of(context).colorScheme.primary,
-                      textStyle: Theme.of(context).textTheme.bodySmall!
-                          .copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      borderColor: theme.colorScheme.primary,
+                      textStyle: theme.textTheme.bodySmall!.copyWith(
+                        color: theme.colorScheme.primary,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 ),
@@ -60,8 +60,8 @@ class ExamCircleProgressDetails extends StatelessWidget {
                     Expanded(
                       child: Text(
                         AppText.inCorrect,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Theme.of(context).colorScheme.primaryContainer,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          color: theme.colorScheme.primaryContainer,
                         ),
                       ),
                     ),
@@ -71,13 +71,10 @@ class ExamCircleProgressDetails extends StatelessWidget {
                       borderColor: Theme.of(
                         context,
                       ).colorScheme.primaryContainer,
-                      textStyle: Theme.of(context).textTheme.bodySmall!
-                          .copyWith(
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.primaryContainer,
-                            fontWeight: FontWeight.w500,
-                          ),
+                      textStyle: theme.textTheme.bodySmall!.copyWith(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 ),
