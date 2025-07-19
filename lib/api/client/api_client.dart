@@ -40,4 +40,7 @@ abstract class ApiClient {
   Future<ResetPasswordResponse> resetPassword({
     @Body() required ResetPasswordRequest request,
   });
+
+  @GET(Endpoints.logoutUri)
+  Future<void> logout({@Header("token") required String token});
 }

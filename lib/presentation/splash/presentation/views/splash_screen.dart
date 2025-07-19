@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_exam_app/core/constants/app_images.dart';
 import 'package:online_exam_app/core/constants/const_keys.dart';
 import 'package:online_exam_app/core/router/route_names.dart';
+import 'package:online_exam_app/utils/exam_method_helper.dart';
 import 'package:online_exam_app/utils/secure_storage/secure_storage.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 2));
 
     final token = await SecureStorage.getData(key: ConstKeys.tokenKey);
+    ExamMethodHelper.currentUserToken = token;
     if (!mounted) return;
     final isLoggedIn = token != null && token.isNotEmpty;
 
