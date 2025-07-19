@@ -12,6 +12,14 @@
 .swiftpm/
 migrate_working_dir/
 
+# Ignore build_runner generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+*.gr.dart
+*.config.dart
+*.mapper.dart
+
 # IntelliJ related
 *.iml
 *.ipr

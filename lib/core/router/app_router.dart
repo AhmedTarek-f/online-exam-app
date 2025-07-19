@@ -6,6 +6,7 @@ import 'package:online_exam_app/presentation/auth/forget_password/reset_password
 import 'package:online_exam_app/presentation/auth/login/views/login_view.dart';
 import 'package:online_exam_app/presentation/auth/signup/views/sign_up_screen.dart';
 import 'package:online_exam_app/presentation/dashboard/presentation/screens/dashboard_screen.dart';
+import 'package:online_exam_app/presentation/exam_score/views/exam_score_view.dart';
 import 'package:online_exam_app/presentation/splash/presentation/views/splash_screen.dart';
 
 abstract class AppRouter {
@@ -33,6 +34,8 @@ abstract class AppRouter {
         );
       case RouteNames.dashboard:
         return MaterialPageRoute(builder: (_) => const DashboardScreen());
+      case RouteNames.examScore:
+        return MaterialPageRoute(builder: (_) => const ExamScoreView());
 
       default:
         return MaterialPageRoute(builder: (_) => const LoginView());
