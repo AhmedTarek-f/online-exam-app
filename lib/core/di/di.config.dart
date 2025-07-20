@@ -23,8 +23,12 @@ import '../../api/data_source/forget_password/reset_password/remote_data_source/
     as _i442;
 import '../../api/data_source/login/remote_data_source/login_remote_data_source_impl.dart'
     as _i221;
+import '../../api/data_source/profile/remote_data_source/profile_remote_data_source_impl.dart'
+    as _i913;
 import '../../api/data_source/signup/remote_data_source/signup_remote_data_source_impl.dart'
     as _i354;
+import '../../api/data_source/splash/remote_data_source/splash_remote_data_source_impl.dart'
+    as _i1009;
 import '../../data/data_source/forget_password/email_verification/remote_data_source/email_verification_remote_data_source.dart'
     as _i449;
 import '../../data/data_source/forget_password/forget_password_email/remote_data_source/forget_password_email_remote_data_source.dart'
@@ -37,6 +41,8 @@ import '../../data/data_source/profile/remote_data_source/profile_remote_data_so
     as _i470;
 import '../../data/data_source/signup/remote_data_source/signup_remote_data_source.dart'
     as _i879;
+import '../../data/data_source/splash/remote_data_source/splash_remote_data_source.dart'
+    as _i592;
 import '../../data/repositories/forget_password/email_verification_repository_impl.dart'
     as _i155;
 import '../../data/repositories/forget_password/forget_password_email_repository_impl.dart'
@@ -46,6 +52,7 @@ import '../../data/repositories/forget_password/reset_password_repository_impl.d
 import '../../data/repositories/login/login_repository_impl.dart' as _i722;
 import '../../data/repositories/profile/profile_repository_impl.dart' as _i770;
 import '../../data/repositories/signup/signup_repository_impl.dart' as _i881;
+import '../../data/repositories/splash/splash_repository_impl.dart' as _i928;
 import '../../domain/repositories/forget_password/email_verification_repository.dart'
     as _i167;
 import '../../domain/repositories/forget_password/forget_password_email_repository.dart'
@@ -55,6 +62,7 @@ import '../../domain/repositories/forget_password/reset_password_repository.dart
 import '../../domain/repositories/login/login_repository.dart' as _i300;
 import '../../domain/repositories/profile/profile_repository.dart' as _i445;
 import '../../domain/repositories/signup/signup_repository.dart' as _i415;
+import '../../domain/repositories/splash/splash_repository.dart' as _i967;
 import '../../domain/use_cases/forget_password/reset_password_use_case.dart'
     as _i690;
 import '../../domain/use_cases/forget_password/send_email_verification_use_case.dart'
@@ -63,6 +71,7 @@ import '../../domain/use_cases/forget_password/verify_email_use_case.dart'
     as _i513;
 import '../../domain/use_cases/login/login_with_email_and_password_use_case.dart'
     as _i197;
+import '../../domain/use_cases/profile/logout_use_case.dart' as _i217;
 import '../../domain/use_cases/signup/signup_use_case.dart' as _i139;
 import '../../domain/use_cases/splash/get_user_use_case.dart' as _i391;
 import '../../presentation/auth/forget_password/email_verification/views_model/email_verification_cubit.dart'
@@ -77,6 +86,7 @@ import '../../presentation/dashboard/domain/controllers/home_controller.dart'
     as _i305;
 import '../../presentation/dashboard/presentation/cubits/home_cubit.dart'
     as _i69;
+import '../../presentation/profile/views_model/profile_cubit.dart' as _i1028;
 import '../../presentation/splash/presentation/views_model/splash_cubit.dart'
     as _i481;
 
@@ -99,6 +109,14 @@ extension GetItInjectableX on _i174.GetIt {
         apiClient: gh<_i508.ApiClient>(),
       ),
     );
+    gh.factory<_i592.SplashRemoteDataSource>(
+      () => _i1009.SplashRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()),
+    );
+    gh.factory<_i967.SplashRepository>(
+      () => _i928.SplashRepositoryImpl(
+        splashRemoteDataSource: gh<_i592.SplashRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i684.LoginRemoteDataSource>(
       () => _i221.LoginRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()),
     );
@@ -116,10 +134,16 @@ extension GetItInjectableX on _i174.GetIt {
         apiClient: gh<_i508.ApiClient>(),
       ),
     );
+    gh.factory<_i470.ProfileRemoteDataSource>(
+      () => _i913.ProfileRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()),
+    );
     gh.factory<_i449.EmailVerificationRemoteDataSource>(
       () => _i40.EmailVerificationRemoteDataSourceImpl(
         apiClient: gh<_i508.ApiClient>(),
       ),
+    );
+    gh.factory<_i391.GetUserUseCase>(
+      () => _i391.GetUserUseCase(gh<_i967.SplashRepository>()),
     );
     gh.factory<_i300.LoginRepository>(
       () => _i722.LoginRepositoryImpl(
@@ -156,6 +180,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i197.LoginWithEmailAndPasswordUseCase>(
       () => _i197.LoginWithEmailAndPasswordUseCase(gh<_i300.LoginRepository>()),
     );
+    gh.factory<_i217.LogoutUseCase>(
+      () => _i217.LogoutUseCase(gh<_i445.ProfileRepository>()),
+    );
     gh.factory<_i941.ResetPasswordCubit>(
       () => _i941.ResetPasswordCubit(
         resetPasswordUseCase: gh<_i690.ResetPasswordUseCase>(),
@@ -183,6 +210,9 @@ extension GetItInjectableX on _i174.GetIt {
         loginWithEmailAndPasswordUseCase:
             gh<_i197.LoginWithEmailAndPasswordUseCase>(),
       ),
+    );
+    gh.factory<_i1028.ProfileCubit>(
+      () => _i1028.ProfileCubit(logoutUseCase: gh<_i217.LogoutUseCase>()),
     );
     gh.factory<_i513.VerifyEmailUseCase>(
       () => _i513.VerifyEmailUseCase(gh<_i167.EmailVerificationRepository>()),
