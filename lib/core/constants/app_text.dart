@@ -67,6 +67,12 @@ abstract final class AppText {
   static const String resetPasswordSuccess =
       "Your password has been successfully reset";
 
+  // profile
+  static const String passwordHint2 = "★★★★★★";
+  static const String change = "Change";
+  static const String update = "Update";
+  static const String logout = "Logout";
+
   // Validations
   static const String connectionValidation =
       "Please check your internet connection and try again";
