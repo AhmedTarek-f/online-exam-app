@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/core/constants/app_text.dart';
-import 'package:online_exam_app/utils/exceptions/failure.dart';
 import 'package:online_exam_app/utils/exceptions/response_exception.dart';
 
 class DioExceptions extends Failure {

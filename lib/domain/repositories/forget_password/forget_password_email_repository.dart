@@ -1,3 +1,5 @@
+import 'package:online_exam_app/api/client/api_result.dart';
+
 abstract class ForgetPasswordEmailRepository {
-  Future<String?> sendEmailVerification({required String email});
+  Future<Result<String?>> sendEmailVerification({required String email});
 }
