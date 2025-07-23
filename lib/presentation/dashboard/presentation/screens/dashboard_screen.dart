@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_exam_app/core/di/di.dart';
 import 'package:online_exam_app/presentation/dashboard/domain/controllers/home_controller.dart';
 import 'package:online_exam_app/presentation/dashboard/presentation/cubits/home_cubit.dart';
+import 'package:online_exam_app/presentation/profile/views/profile_view.dart';
 
 import 'home_screen.dart';
 
@@ -23,7 +24,10 @@ class DashboardScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
-            title: Text(_getTitle(currentIndex)),
+            title: Text(
+              _getTitle(currentIndex),
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
           ),
           body: _getTab(currentIndex),
           bottomNavigationBar: BottomNavigationBar(
@@ -53,7 +57,7 @@ class DashboardScreen extends StatelessWidget {
       case 1:
         return const Center(child: Text('Results'));
       case 2:
-        return const Center(child: Text('Profile'));
+        return const ProfileView();
       default:
         return const SizedBox.shrink();
     }

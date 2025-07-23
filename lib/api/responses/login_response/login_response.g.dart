@@ -10,14 +10,14 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) =>
     LoginResponse(
       message: json['message'] as String?,
       token: json['token'] as String?,
-      userLoginData: json['userLoginData'] == null
+      userLoginData: json['user'] == null
           ? null
-          : UserModel.fromJson(json['userLoginData'] as Map<String, dynamic>),
+          : UserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
       'token': instance.token,
-      'userLoginData': instance.userLoginData,
+      'user': instance.userLoginData,
     };
