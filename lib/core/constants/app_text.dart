@@ -32,6 +32,17 @@ abstract final class AppText {
   static const String survey = "Survey";
   static const String browseBySubject = "Browse by subject";
 
+  //Exam
+  static const String examScore = "Exam score";
+  static const String yourScore = "Your score";
+  static const String correct = "correct";
+  static const String inCorrect = "Incorrect";
+  static const String showResults = "Show results";
+  static const String startAgain = "Start again";
+  static const String startQuizMessage =
+      "Are you certain you want to begin the quiz?";
+  static const String start = "start";
+
   //Forget password
   static const forgetPassword2 = "Forget password";
   static const forgetPasswordMessage =

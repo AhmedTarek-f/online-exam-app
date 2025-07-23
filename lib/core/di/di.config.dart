@@ -79,6 +79,8 @@ import '../../presentation/dashboard/domain/controllers/home_controller.dart'
     as _i305;
 import '../../presentation/dashboard/presentation/cubits/home_cubit.dart'
     as _i69;
+import '../../presentation/exam_score/views_model/exam_score_cubit.dart'
+    as _i550;
 import '../../presentation/profile/views_model/profile_cubit.dart' as _i1028;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -89,6 +91,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final apiModule = _$ApiModule();
+    gh.factory<_i550.ExamScoreCubit>(() => _i550.ExamScoreCubit());
     gh.singleton<_i361.Dio>(() => apiModule.provideDio());
     gh.lazySingleton<_i69.HomeCubit>(() => _i69.HomeCubit());
     gh.factory<_i305.HomeController>(
