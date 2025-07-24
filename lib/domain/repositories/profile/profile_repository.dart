@@ -1,3 +1,5 @@
+import 'package:online_exam_app/api/client/api_result.dart';
+
 abstract class ProfileRepository {
-  Future<void> logout();
+  Future<Result<void>> logout();
 }

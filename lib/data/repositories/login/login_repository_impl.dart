@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/data/data_source/login/remote_data_source/login_remote_data_source.dart';
 import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
 import 'package:online_exam_app/domain/repositories/login/login_repository.dart';
@@ -10,7 +11,7 @@ class LoginRepositoryImpl implements LoginRepository {
   const LoginRepositoryImpl({required this.loginRemoteDataSource});
 
   @override
-  Future<UserLoginEntity?> login({
+  Future<Result<UserLoginEntity?>> login({
     required String email,
     required String password,
   }) async {

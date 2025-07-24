@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/domain/repositories/forget_password/reset_password_repository.dart';
 
 @injectable
@@ -7,7 +8,7 @@ class ResetPasswordUseCase {
   @factoryMethod
   const ResetPasswordUseCase(this._resetPasswordRepository);
 
-  Future<String?> invoke({
+  Future<Result<String?>> invoke({
     required String email,
     required String newPassword,
   }) async {

@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/data/data_source/forget_password/reset_password/remote_data_source/reset_password_remote_data_source.dart';
 import 'package:online_exam_app/domain/repositories/forget_password/reset_password_repository.dart';
 
@@ -11,7 +12,7 @@ class ResetPasswordRepositoryImpl implements ResetPasswordRepository {
   });
 
   @override
-  Future<String?> resetPassword({
+  Future<Result<String?>> resetPassword({
     required String email,
     required String newPassword,
   }) async {

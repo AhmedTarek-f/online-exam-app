@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/core/constants/const_keys.dart';
 import 'package:online_exam_app/domain/use_cases/forget_password/send_email_verification_use_case.dart';
 import 'package:online_exam_app/domain/use_cases/forget_password/verify_email_use_case.dart';
 import 'package:online_exam_app/presentation/auth/forget_password/email_verification/views_model/email_verification_state.dart';
-import 'package:online_exam_app/utils/exceptions/dio_exceptions.dart';
 import 'package:online_exam_app/utils/exceptions/response_exception.dart';
 import 'package:online_exam_app/utils/validations.dart';
 
@@ -35,43 +35,44 @@ class EmailVerificationCubit extends Cubit<EmailVerificationState> {
     } else {
       emit(OTPValidationLoadingState());
       if (isClosed) return;
-      try {
-        final String? status = await verifyEmailUseCase.invoke(code: otpValue);
-        if (status?.toLowerCase() == ConstKeys.success) {
-          emit(OTPValidationSuccessState());
-        }
-      } catch (error) {
-        if (error is DioExceptions) {
+      var status = await verifyEmailUseCase.invoke(code: otpValue);
+      switch (status) {
+        case Success<String?>():
+          {
+            if (status.data?.toLowerCase() == ConstKeys.success) {
+              emit(OTPValidationSuccessState());
+            }
+          }
+          break;
+        case Failure<String?>():
           emit(
             OTPValidationFailureState(
               errorData:
-                  error.responseException ??
-                  ResponseException(code: 0, message: error.errorMessage),
+                  status.responseException ??
+                  ResponseException(code: 0, message: status.errorMessage),
             ),
           );
-        }
+          break;
       }
     }
   }
 
   Future<void> resendVerificationCode({required String userEmail}) async {
     emit(ResendCodeLoadingState());
-    try {
-      String? info = await sendEmailVerificationUseCase.invoke(
-        email: userEmail,
-      );
-
-      emit(ResendCodeSuccessState(info: info));
-    } catch (error) {
-      if (error is DioExceptions) {
+    var info = await sendEmailVerificationUseCase.invoke(email: userEmail);
+    switch (info) {
+      case Success<String?>():
+        emit(ResendCodeSuccessState(info: info.data));
+        break;
+      case Failure<String?>():
         emit(
           ResendCodeFailureState(
             errorData:
-                error.responseException ??
-                ResponseException(code: 0, message: error.errorMessage),
+                info.responseException ??
+                ResponseException(code: 0, message: info.errorMessage),
           ),
         );
-      }
+        break;
     }
   }
 }

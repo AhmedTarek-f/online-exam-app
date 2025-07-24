@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/data/data_source/profile/remote_data_source/profile_remote_data_source.dart';
 import 'package:online_exam_app/domain/repositories/profile/profile_repository.dart';
 
@@ -9,7 +10,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   const ProfileRepositoryImpl({required this.profileRemoteDataSource});
 
   @override
-  Future<void> logout() async {
-    await profileRemoteDataSource.logout();
+  Future<Result<void>> logout() async {
+    return await profileRemoteDataSource.logout();
   }
 }
