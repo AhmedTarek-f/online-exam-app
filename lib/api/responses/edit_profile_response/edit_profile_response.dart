@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:online_exam_app/api/models/user_model/user_model.dart';
 import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
 
 part 'edit_profile_response.g.dart';
@@ -8,7 +9,7 @@ class EditProfileResponse {
   @JsonKey(name: "message")
   final String? message;
   @JsonKey(name: "user")
-  final User? user;
+  final UserModel? user;
 
   EditProfileResponse({this.message, this.user});
 
@@ -18,63 +19,5 @@ class EditProfileResponse {
 
   Map<String, dynamic> toJson() {
     return _$EditProfileResponseToJson(this);
-  }
-}
-
-@JsonSerializable()
-class User {
-  @JsonKey(name: "_id")
-  final String? Id;
-  @JsonKey(name: "username")
-  final String? username;
-  @JsonKey(name: "firstName")
-  final String? firstName;
-  @JsonKey(name: "lastName")
-  final String? lastName;
-  @JsonKey(name: "email")
-  final String? email;
-  @JsonKey(name: "phone")
-  final String? phone;
-  @JsonKey(name: "role")
-  final String? role;
-  @JsonKey(name: "password")
-  final String? password;
-  @JsonKey(name: "isVerified")
-  final bool? isVerified;
-  @JsonKey(name: "createdAt")
-  final String? createdAt;
-  @JsonKey(name: "passwordChangedAt")
-  final String? passwordChangedAt;
-
-  User({
-    this.Id,
-    this.username,
-    this.firstName,
-    this.lastName,
-    this.email,
-    this.phone,
-    this.role,
-    this.password,
-    this.isVerified,
-    this.createdAt,
-    this.passwordChangedAt,
-  });
-
-  factory User.fromJson(Map<String, dynamic> json) {
-    return _$UserFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() {
-    return _$UserToJson(this);
-  }
-
-  UserLoginEntity toUserLoginEntity() {
-    return UserLoginEntity(
-      email: email,
-      phone: phone,
-      lastName: lastName,
-      firstName: firstName,
-      username: username,
-    );
   }
 }
