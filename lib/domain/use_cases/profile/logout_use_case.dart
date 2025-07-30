@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/domain/repositories/profile/profile_repository.dart';
 
 @injectable
@@ -7,7 +8,7 @@ class LogoutUseCase {
   @factoryMethod
   const LogoutUseCase(this._profileRepository);
 
-  Future<void> invoke() async {
+  Future<Result<void>> invoke() async {
     return await _profileRepository.logout();
   }
 }
