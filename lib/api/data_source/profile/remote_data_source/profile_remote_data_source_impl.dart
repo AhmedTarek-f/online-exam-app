@@ -14,7 +14,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   @override
   Future<Result<void>> logout() async {
     return executeApi(() async {
-      await apiClient.logout(token: ExamMethodHelper.currentUserToken ?? "");
+      await _apiClient.logout(token: ExamMethodHelper.currentUserToken ?? "");
       await SecureStorage.deleteData(key: ConstKeys.tokenKey);
       ExamMethodHelper.userData = null;
     });

@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/api/requests/signup_request/signup_request.dart';
 import 'package:online_exam_app/data/data_source/signup/remote_data_source/signup_remote_data_source.dart';
 import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
@@ -11,7 +12,9 @@ class SignupRepositoryImpl implements SignupRepository {
   const SignupRepositoryImpl({required this.signupRemoteDataSource});
 
   @override
-  Future<Result<UserDataEntity?>> signup({required SignupRequest request}) async {
+  Future<Result<UserDataEntity?>> signup({
+    required SignupRequest request,
+  }) async {
     return await signupRemoteDataSource.signup(request: request);
   }
 }

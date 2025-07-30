@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/api/requests/signup_request/signup_request.dart';
-import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
+import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 import 'package:online_exam_app/domain/use_cases/signup/signup_use_case.dart';
 import 'package:online_exam_app/utils/exceptions/response_exception.dart';
 
@@ -52,10 +52,10 @@ class SignUpCubit extends Cubit<SignUpState> {
         ),
       );
       switch (result) {
-        case Success<UserLoginEntity?>():
+        case Success<UserDataEntity?>():
           emit(SignUpSuccess());
           break;
-        case Failure<UserLoginEntity?>():
+        case Failure<UserDataEntity?>():
           emit(
             SignUpFailure(
               errorData:

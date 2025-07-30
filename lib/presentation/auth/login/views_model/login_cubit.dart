@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/api/client/api_result.dart';
+import 'package:online_exam_app/api/requests/login_request/login_request.dart';
 import 'package:online_exam_app/core/cache/shared_preferences_helper.dart';
 import 'package:online_exam_app/core/constants/const_keys.dart';
 import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 import 'package:online_exam_app/domain/use_cases/login/login_with_email_and_password_use_case.dart';
 import 'package:online_exam_app/presentation/auth/login/views_model/login_state.dart';
 import 'package:online_exam_app/utils/exam_method_helper.dart';
-import 'package:online_exam_app/utils/exceptions/dio_exceptions.dart';
 import 'package:online_exam_app/utils/exceptions/response_exception.dart';
 import 'package:online_exam_app/utils/secure_storage/secure_storage.dart';
 
@@ -87,8 +87,10 @@ class LoginCubit extends Cubit<LoginState> {
     if (loginFormKey.currentState!.validate()) {
       emit(LoginLoadingState());
       var userData = await loginWithEmailAndPasswordUseCase.invoke(
-        email: emailController.text,
-        password: passwordController.text,
+        request: LoginRequest(
+          email: emailController.text,
+          password: passwordController.text,
+        ),
       );
       switch (userData) {
         case Success<UserDataEntity?>():
