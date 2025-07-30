@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:online_exam_app/core/constants/const_keys.dart';
 
 abstract class SecureStorage {
   static AndroidOptions _getAndroidOptions() =>
@@ -18,6 +19,10 @@ abstract class SecureStorage {
       await _storage.deleteAll();
       await _storage.write(key: key, value: value);
     }
+  }
+
+  static Future<void> saveUserToken({required String? token}) async {
+    await saveData(key: ConstKeys.tokenKey, value: token ?? "");
   }
 
   static Future<String?> getData({required String key}) async {

@@ -1,8 +1,6 @@
-import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
+import 'package:online_exam_app/api/requests/login_request/login_request.dart';
+import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 
 abstract class LoginRemoteDataSource {
-  Future<UserLoginEntity?> login({
-    required String email,
-    required String password,
-  });
+  Future<UserDataEntity?> login({required LoginRequest request});
 }

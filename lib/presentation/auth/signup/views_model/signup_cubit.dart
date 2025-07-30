@@ -41,13 +41,15 @@ class SignUpCubit extends Cubit<SignUpState> {
       try {
         emit(SignUpLoading());
         await signupUseCase.invoke(
-          username: signupData.username!,
-          firstName: signupData.firstName!,
-          lastName: signupData.lastName!,
-          email: signupData.email!,
-          password: signupData.password!,
-          rePassword: signupData.rePassword!,
-          phone: signupData.phone!,
+          request: SignupRequest(
+            username: signupData.username!,
+            firstName: signupData.firstName!,
+            lastName: signupData.lastName!,
+            email: signupData.email!,
+            password: signupData.password!,
+            rePassword: signupData.rePassword!,
+            phone: signupData.phone!,
+          ),
         );
         emit(SignUpSuccess());
       } catch (error) {

@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:online_exam_app/api/models/user_model/user_model.dart';
-import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
 
 part 'edit_profile_response.g.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:online_exam_app/api/models/user_model/user_model.dart';
-import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
+import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 
 void main() {
   group("test toUserLoginEntity", () {
@@ -23,7 +23,7 @@ void main() {
         );
 
         //Act
-        UserLoginEntity actualResult = userData.toUserLoginEntity();
+        UserDataEntity actualResult = userData.toUserLoginEntity();
 
         //Assert
         expect(actualResult.username, isNull);
@@ -52,7 +52,7 @@ void main() {
         );
 
         //Act
-        UserLoginEntity actualResult = userData.toUserLoginEntity();
+        UserDataEntity actualResult = userData.toUserLoginEntity();
 
         //Assert
         expect(actualResult.username, equals(userData.username));

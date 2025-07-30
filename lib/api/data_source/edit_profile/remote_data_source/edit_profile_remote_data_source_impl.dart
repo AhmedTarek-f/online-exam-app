@@ -9,16 +9,15 @@ import 'package:online_exam_app/utils/exceptions/dio_exceptions.dart';
 
 @Injectable(as: EditProfileRemoteDataSource)
 class EditProfileRemoteDataSourceImpl implements EditProfileRemoteDataSource {
-  final ApiClient apiClient;
-  @factoryMethod
-  const EditProfileRemoteDataSourceImpl({required this.apiClient});
+  final ApiClient _apiClient;
+  const EditProfileRemoteDataSourceImpl(this._apiClient);
 
   @override
   Future<void> editProfile({required EditProfileRequest request}) async {
     try {
       final bool connection = await ConnectionManager.checkConnection();
       if (connection) {
-        var response = await apiClient.editProfile(
+        var response = await _apiClient.editProfile(
           token: ExamMethodHelper.currentUserToken ?? "",
           request: request,
         );

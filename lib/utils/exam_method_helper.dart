@@ -1,6 +1,6 @@
-import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
+import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 
 abstract class ExamMethodHelper {
-  static UserLoginEntity? userData;
+  static UserDataEntity? userData;
   static String? currentUserToken;
 }
