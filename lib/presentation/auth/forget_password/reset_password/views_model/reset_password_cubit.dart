@@ -6,7 +6,6 @@ import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/core/constants/const_keys.dart';
 import 'package:online_exam_app/domain/use_cases/forget_password/reset_password_use_case.dart';
 import 'package:online_exam_app/presentation/auth/forget_password/reset_password/views_model/reset_password_state.dart';
-import 'package:online_exam_app/utils/exceptions/dio_exceptions.dart';
 import 'package:online_exam_app/utils/exceptions/response_exception.dart';
 
 @injectable
