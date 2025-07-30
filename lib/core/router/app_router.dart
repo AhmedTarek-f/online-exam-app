@@ -14,7 +14,7 @@ abstract class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteNames.splash:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashView());
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case RouteNames.forgetPasswordEmail:
@@ -45,6 +45,5 @@ abstract class AppRouter {
       default:
         return MaterialPageRoute(builder: (_) => const LoginView());
     }
-    return null;
   }
 }

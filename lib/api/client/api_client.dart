@@ -12,6 +12,7 @@ import 'package:online_exam_app/api/responses/forget_password_response/forget_pa
 import 'package:online_exam_app/api/responses/login_response/login_response.dart';
 import 'package:online_exam_app/api/responses/reset_password_response/reset_password_response.dart';
 import 'package:online_exam_app/api/responses/signup_response/signup_response.dart';
+import 'package:online_exam_app/api/responses/splash_response/splash_response.dart';
 import 'package:online_exam_app/core/constants/endpoints.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -51,4 +52,7 @@ abstract class ApiClient {
     @Header("token") required String token,
     @Body() required EditProfileRequest request,
   });
+
+  @GET(Endpoints.getUserDataUri)
+  Future<SplashResponse> getUserData({@Header("token") required String token});
 }

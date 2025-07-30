@@ -32,6 +32,10 @@ abstract final class AppText {
   static const String survey = "Survey";
   static const String browseBySubject = "Browse by subject";
 
+  //Splash
+  static const tryAgain = "Try again";
+  static const reLogin = "Re-login";
+
   //Forget password
   static const forgetPassword2 = "Forget password";
   static const forgetPasswordMessage =
