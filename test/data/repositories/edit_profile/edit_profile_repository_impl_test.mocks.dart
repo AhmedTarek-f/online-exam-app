@@ -3,14 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:online_exam_app/api/client/api_client.dart' as _i2;
 import 'package:online_exam_app/api/data_source/edit_profile/remote_data_source/edit_profile_remote_data_source_impl.dart'
-    as _i3;
+    as _i2;
 import 'package:online_exam_app/api/requests/edit_profile_request/edit_profile_request.dart'
-    as _i5;
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,34 +25,21 @@ import 'package:online_exam_app/api/requests/edit_profile_request/edit_profile_r
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeApiClient_0 extends _i1.SmartFake implements _i2.ApiClient {
-  _FakeApiClient_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
-}
-
 /// A class which mocks [EditProfileRemoteDataSourceImpl].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockEditProfileRemoteDataSourceImpl extends _i1.Mock
-    implements _i3.EditProfileRemoteDataSourceImpl {
+    implements _i2.EditProfileRemoteDataSourceImpl {
   MockEditProfileRemoteDataSourceImpl() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.ApiClient get apiClient =>
-      (super.noSuchMethod(
-            Invocation.getter(#apiClient),
-            returnValue: _FakeApiClient_0(this, Invocation.getter(#apiClient)),
-          )
-          as _i2.ApiClient);
-
-  @override
-  _i4.Future<void> editProfile({required _i5.EditProfileRequest? request}) =>
+  _i3.Future<void> editProfile({required _i4.EditProfileRequest? request}) =>
       (super.noSuchMethod(
             Invocation.method(#editProfile, [], {#request: request}),
-            returnValue: _i4.Future<void>.value(),
-            returnValueForMissingStub: _i4.Future<void>.value(),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
           )
-          as _i4.Future<void>);
+          as _i3.Future<void>);
 }
