@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/api/requests/reset_password_request/reset_password_request.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/core/constants/const_keys.dart';
 import 'package:online_exam_app/domain/use_cases/forget_password/reset_password_use_case.dart';
 import 'package:online_exam_app/presentation/auth/forget_password/reset_password/views_model/reset_password_state.dart';
@@ -47,27 +48,30 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
 
   Future<void> resetPassword({required String email}) async {
     if (changePasswordFormKey.currentState!.validate()) {
-      try {
-        emit(ResetPasswordLoadingState());
-        String? message = await resetPasswordUseCase.invoke(
-          request: ResetPasswordRequest(
-            email: email,
-            newPassword: newPasswordController.text.trim(),
-          ),
-        );
-        if (message?.toLowerCase() == ConstKeys.success) {
-          emit(ResetPasswordSuccessState());
-        }
-      } catch (error) {
-        if (error is DioExceptions) {
+      emit(ResetPasswordLoadingState());
+      var message = await resetPasswordUseCase.invoke(
+        request: ResetPasswordRequest(
+          email: email,
+          newPassword: newPasswordController.text.trim(),
+        ),
+      );
+      switch (message) {
+        case Success<String?>():
+          {
+            if (message.data?.toLowerCase() == ConstKeys.success) {
+              emit(ResetPasswordSuccessState());
+            }
+            break;
+          }
+        case Failure<String?>():
           emit(
             ResetPasswordFailureState(
               errorData:
-                  error.responseException ??
-                  ResponseException(code: 0, message: error.errorMessage),
+                  message.responseException ??
+                  ResponseException(code: 0, message: message.errorMessage),
             ),
           );
-        }
+          break;
       }
     } else {
       enableAutoValidateMode();

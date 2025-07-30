@@ -13,19 +13,12 @@ class EmailVerificationRemoteDataSourceImpl
   const EmailVerificationRemoteDataSourceImpl(this._apiClient);
 
   @override
-  Future<String?> verifyEmailCode({required String code}) async {
-    try {
-      final bool connection = await ConnectionManager.checkConnection();
-      if (connection) {
-        var response = await _apiClient.verifyEmailCode(
-          request: EmailVerificationRequest(resetCode: code),
-        );
-        return response.status;
-      } else {
-        throw AppText.connectionValidation;
-      }
-    } catch (error) {
-      throw DioExceptions.handleError(error);
-    }
+  Future<Result<String?>> verifyEmailCode({required String code}) async {
+    return executeApi(() async {
+      var response = await apiClient.verifyEmailCode(
+        request: EmailVerificationRequest(resetCode: code),
+      );
+      return response.status;
+    });
   }
 }

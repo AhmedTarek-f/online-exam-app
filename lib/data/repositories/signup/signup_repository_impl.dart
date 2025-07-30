@@ -11,7 +11,7 @@ class SignupRepositoryImpl implements SignupRepository {
   const SignupRepositoryImpl({required this.signupRemoteDataSource});
 
   @override
-  Future<UserDataEntity?> signup({required SignupRequest request}) async {
+  Future<Result<UserDataEntity?>> signup({required SignupRequest request}) async {
     return await signupRemoteDataSource.signup(request: request);
   }
 }

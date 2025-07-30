@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_exam_app/api/requests/login_request/login_request.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/core/cache/shared_preferences_helper.dart';
 import 'package:online_exam_app/core/constants/const_keys.dart';
 import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
@@ -85,28 +85,28 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> login() async {
     if (loginFormKey.currentState!.validate()) {
-      try {
-        emit(LoginLoadingState());
-        UserDataEntity? userData = await loginWithEmailAndPasswordUseCase
-            .invoke(
-              request: LoginRequest(
-                email: emailController.text.trim(),
-                password: passwordController.text.trim(),
-              ),
-            );
-        ExamMethodHelper.userData = userData;
-        if (rememberMe) await rememberUserData();
-        emit(LoginSuccessState());
-      } catch (error) {
-        if (error is DioExceptions) {
+      emit(LoginLoadingState());
+      var userData = await loginWithEmailAndPasswordUseCase.invoke(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      switch (userData) {
+        case Success<UserDataEntity?>():
+          {
+            ExamMethodHelper.userData = userData.data;
+            if (rememberMe) await rememberUserData();
+            emit(LoginSuccessState());
+            break;
+          }
+        case Failure<UserDataEntity?>():
           emit(
             LoginFailureState(
               errorData:
-                  error.responseException ??
-                  ResponseException(code: 0, message: error.errorMessage),
+                  userData.responseException ??
+                  ResponseException(code: 0, message: userData.errorMessage),
             ),
           );
-        }
+          break;
       }
     } else {
       enableAutoValidateMode();

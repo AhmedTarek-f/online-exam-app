@@ -14,19 +14,12 @@ class ForgetPasswordEmailRemoteDataSourceImpl
   const ForgetPasswordEmailRemoteDataSourceImpl(this._apiClient);
 
   @override
-  Future<String?> sendEmailVerification({required String email}) async {
-    try {
-      final bool connection = await ConnectionManager.checkConnection();
-      if (connection) {
-        var response = await _apiClient.sendEmailVerification(
-          request: ForgetPasswordEmailRequest(email: email),
-        );
-        return response.info;
-      } else {
-        throw AppText.connectionValidation;
-      }
-    } catch (error) {
-      throw DioExceptions.handleError(error);
-    }
+  Future<Result<String?>> sendEmailVerification({required String email}) async {
+    return executeApi(() async {
+      var response = await apiClient.sendEmailVerification(
+        request: ForgetPasswordEmailRequest(email: email),
+      );
+      return response.info;
+    });
   }
 }
