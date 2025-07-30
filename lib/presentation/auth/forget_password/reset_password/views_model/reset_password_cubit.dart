@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/api/requests/reset_password_request/reset_password_request.dart';
 import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/core/constants/const_keys.dart';
 import 'package:online_exam_app/domain/use_cases/forget_password/reset_password_use_case.dart';
@@ -48,8 +49,10 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     if (changePasswordFormKey.currentState!.validate()) {
       emit(ResetPasswordLoadingState());
       var message = await resetPasswordUseCase.invoke(
-        email: email,
-        newPassword: newPasswordController.text.trim(),
+        request: ResetPasswordRequest(
+          email: email,
+          newPassword: newPasswordController.text.trim(),
+        ),
       );
       switch (message) {
         case Success<String?>():

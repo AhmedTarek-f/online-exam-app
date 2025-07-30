@@ -7,14 +7,13 @@ import 'package:online_exam_app/data/data_source/forget_password/email_verificat
 @Injectable(as: EmailVerificationRemoteDataSource)
 class EmailVerificationRemoteDataSourceImpl
     implements EmailVerificationRemoteDataSource {
-  final ApiClient apiClient;
-  @factoryMethod
-  const EmailVerificationRemoteDataSourceImpl({required this.apiClient});
+  final ApiClient _apiClient;
+  const EmailVerificationRemoteDataSourceImpl(this._apiClient);
 
   @override
   Future<Result<String?>> verifyEmailCode({required String code}) async {
     return executeApi(() async {
-      var response = await apiClient.verifyEmailCode(
+      var response = await _apiClient.verifyEmailCode(
         request: EmailVerificationRequest(resetCode: code),
       );
       return response.status;

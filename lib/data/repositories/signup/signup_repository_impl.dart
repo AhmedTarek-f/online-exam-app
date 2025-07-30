@@ -1,7 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/api/client/api_result.dart';
+import 'package:online_exam_app/api/requests/signup_request/signup_request.dart';
 import 'package:online_exam_app/data/data_source/signup/remote_data_source/signup_remote_data_source.dart';
-import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
+import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 import 'package:online_exam_app/domain/repositories/signup/signup_repository.dart';
 
 @Injectable(as: SignupRepository)
@@ -11,23 +12,9 @@ class SignupRepositoryImpl implements SignupRepository {
   const SignupRepositoryImpl({required this.signupRemoteDataSource});
 
   @override
-  Future<Result<UserLoginEntity?>> signup({
-    required String username,
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String password,
-    required String rePassword,
-    required String phone,
+  Future<Result<UserDataEntity?>> signup({
+    required SignupRequest request,
   }) async {
-    return await signupRemoteDataSource.signup(
-      username: username,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      rePassword: rePassword,
-      phone: phone,
-    );
+    return await signupRemoteDataSource.signup(request: request);
   }
 }

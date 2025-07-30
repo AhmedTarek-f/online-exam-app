@@ -8,14 +8,13 @@ import '../../../../../data/data_source/forget_password/forget_password_email/re
 @Injectable(as: ForgetPasswordEmailRemoteDataSource)
 class ForgetPasswordEmailRemoteDataSourceImpl
     implements ForgetPasswordEmailRemoteDataSource {
-  final ApiClient apiClient;
-  @factoryMethod
-  const ForgetPasswordEmailRemoteDataSourceImpl({required this.apiClient});
+  final ApiClient _apiClient;
+  const ForgetPasswordEmailRemoteDataSourceImpl(this._apiClient);
 
   @override
   Future<Result<String?>> sendEmailVerification({required String email}) async {
     return executeApi(() async {
-      var response = await apiClient.sendEmailVerification(
+      var response = await _apiClient.sendEmailVerification(
         request: ForgetPasswordEmailRequest(email: email),
       );
       return response.info;

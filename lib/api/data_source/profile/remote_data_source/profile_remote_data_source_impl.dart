@@ -8,14 +8,13 @@ import 'package:online_exam_app/utils/secure_storage/secure_storage.dart';
 
 @Injectable(as: ProfileRemoteDataSource)
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
-  final ApiClient apiClient;
-  @factoryMethod
-  const ProfileRemoteDataSourceImpl({required this.apiClient});
+  final ApiClient _apiClient;
+  const ProfileRemoteDataSourceImpl(this._apiClient);
 
   @override
   Future<Result<void>> logout() async {
     return executeApi(() async {
-      await apiClient.logout(token: ExamMethodHelper.currentUserToken ?? "");
+      await _apiClient.logout(token: ExamMethodHelper.currentUserToken ?? "");
       await SecureStorage.deleteData(key: ConstKeys.tokenKey);
       ExamMethodHelper.userData = null;
     });

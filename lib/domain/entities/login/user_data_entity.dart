@@ -1,5 +1,5 @@
-class UserLoginEntity {
-  UserLoginEntity({
+class UserDataEntity {
+  UserDataEntity({
     this.username,
     this.firstName,
     this.lastName,

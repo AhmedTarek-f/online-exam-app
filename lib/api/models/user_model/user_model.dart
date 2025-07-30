@@ -1,12 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 
-part 'user_login_model.g.dart';
+part 'user_model.g.dart';
 
 @JsonSerializable()
 class UserModel {
   @JsonKey(name: "_id")
-  final String? id;
+  final String? Id;
   @JsonKey(name: "username")
   final String? username;
   @JsonKey(name: "firstName")
@@ -19,21 +19,27 @@ class UserModel {
   final String? phone;
   @JsonKey(name: "role")
   final String? role;
+  @JsonKey(name: "password")
+  final String? password;
   @JsonKey(name: "isVerified")
   final bool? isVerified;
   @JsonKey(name: "createdAt")
   final String? createdAt;
+  @JsonKey(name: "passwordChangedAt")
+  final String? passwordChangedAt;
 
   UserModel({
-    this.id,
+    this.Id,
     this.username,
     this.firstName,
     this.lastName,
     this.email,
     this.phone,
     this.role,
+    this.password,
     this.isVerified,
     this.createdAt,
+    this.passwordChangedAt,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -44,13 +50,13 @@ class UserModel {
     return _$UserModelToJson(this);
   }
 
-  UserDataEntity toUserDataEntity() {
+  UserDataEntity toUserLoginEntity() {
     return UserDataEntity(
-      username: username,
-      firstName: firstName,
-      lastName: lastName,
       email: email,
       phone: phone,
+      lastName: lastName,
+      firstName: firstName,
+      username: username,
     );
   }
 }

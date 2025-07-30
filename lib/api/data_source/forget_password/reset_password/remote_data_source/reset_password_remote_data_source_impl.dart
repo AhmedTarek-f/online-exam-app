@@ -7,18 +7,14 @@ import 'package:online_exam_app/data/data_source/forget_password/reset_password/
 @Injectable(as: ResetPasswordRemoteDataSource)
 class ResetPasswordRemoteDataSourceImpl
     implements ResetPasswordRemoteDataSource {
-  final ApiClient apiClient;
-  @factoryMethod
-  const ResetPasswordRemoteDataSourceImpl({required this.apiClient});
+  final ApiClient _apiClient;
+  const ResetPasswordRemoteDataSourceImpl(this._apiClient);
   @override
   Future<Result<String?>> resetPassword({
-    required String email,
-    required String newPassword,
+    required ResetPasswordRequest request,
   }) async {
     return executeApi(() async {
-      var response = await apiClient.resetPassword(
-        request: ResetPasswordRequest(email: email, newPassword: newPassword),
-      );
+      var response = await _apiClient.resetPassword(request: request);
       return response.message;
     });
   }

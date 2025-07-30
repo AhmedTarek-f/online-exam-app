@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/api/requests/signup_request/signup_request.dart';
-import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
+import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 import 'package:online_exam_app/domain/use_cases/signup/signup_use_case.dart';
 import 'package:online_exam_app/utils/exceptions/response_exception.dart';
 
@@ -41,19 +41,21 @@ class SignUpCubit extends Cubit<SignUpState> {
     if (signUpForm.currentState!.validate()) {
       emit(SignUpLoading());
       var result = await signupUseCase.invoke(
-        username: signupData.username!,
-        firstName: signupData.firstName!,
-        lastName: signupData.lastName!,
-        email: signupData.email!,
-        password: signupData.password!,
-        rePassword: signupData.rePassword!,
-        phone: signupData.phone!,
+        request: SignupRequest(
+          username: signupData.username!,
+          firstName: signupData.firstName!,
+          lastName: signupData.lastName!,
+          email: signupData.email!,
+          password: signupData.password!,
+          rePassword: signupData.rePassword!,
+          phone: signupData.phone!,
+        ),
       );
       switch (result) {
-        case Success<UserLoginEntity?>():
+        case Success<UserDataEntity?>():
           emit(SignUpSuccess());
           break;
-        case Failure<UserLoginEntity?>():
+        case Failure<UserDataEntity?>():
           emit(
             SignUpFailure(
               errorData:

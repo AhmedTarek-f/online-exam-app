@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _searchController = TextEditingController();
+    final TextEditingController searchController = TextEditingController();
 
     final subjects = [
       {'title': AppText.language, 'image': AppImages.language},
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           const RSizedBox(height: Dimensions.paddingSizeDefault),
           TextField(
-            controller: _searchController,
+            controller: searchController,
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(
               hintText: AppText.search,
