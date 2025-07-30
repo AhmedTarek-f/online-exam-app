@@ -66,6 +66,11 @@ abstract final class AppText {
   static const String update = "Update";
   static const String logout = "Logout";
 
+  // Edit Profile
+  static const String editProfile = "Edit profile";
+  static const String editProfileSuccessMessage =
+      "Your profile has been successfully updated";
+
   // Validations
   static const String connectionValidation =
       "Please check your internet connection and try again";

@@ -30,6 +30,9 @@ class ProfileCubit extends Cubit<ProfileState> {
       case LogoutIntent():
         await _logout();
         break;
+      case UpdateProfileDataIntent():
+        _updateUserData();
+        break;
     }
   }
 
@@ -68,6 +71,15 @@ class ProfileCubit extends Cubit<ProfileState> {
         );
       }
     }
+  }
+
+  void _updateUserData() {
+    userNameController.text = ExamMethodHelper.userData?.username ?? "";
+    firstNameController.text = ExamMethodHelper.userData?.firstName ?? "";
+    lastNameController.text = ExamMethodHelper.userData?.lastName ?? "";
+    emailController.text = ExamMethodHelper.userData?.email ?? "";
+    phoneController.text = ExamMethodHelper.userData?.phone ?? "";
+    emit(UpdatedProfileDataState());
   }
 
   @override
