@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
+import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 
 part 'splash_response.g.dart';
 
@@ -65,8 +65,8 @@ class User {
     return _$UserToJson(this);
   }
 
-  UserLoginEntity toUserLoginEntity() {
-    return UserLoginEntity(
+  UserDataEntity toUserDataEntity() {
+    return UserDataEntity(
       email: email,
       username: username,
       firstName: firstName,

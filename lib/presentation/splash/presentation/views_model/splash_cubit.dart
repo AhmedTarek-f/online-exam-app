@@ -1,11 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
 import 'package:online_exam_app/core/constants/const_keys.dart';
+import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 import 'package:online_exam_app/domain/use_cases/splash/get_user_use_case.dart';
 import 'package:online_exam_app/presentation/splash/presentation/views_model/splash_intent.dart';
 import 'package:online_exam_app/presentation/splash/presentation/views_model/splash_state.dart';
 import 'package:online_exam_app/utils/exam_method_helper.dart';
-import 'package:online_exam_app/utils/exceptions/dio_exceptions.dart';
 import 'package:online_exam_app/utils/exceptions/response_exception.dart';
 import 'package:online_exam_app/utils/secure_storage/secure_storage.dart';
 
@@ -26,21 +27,21 @@ class SplashCubit extends Cubit<SplashState> {
   }
 
   Future<void> _getUserData() async {
-    try {
-      emit(FetchUserDataLoadingState());
-      var userData = await _getUserUseCase.invoke();
-      ExamMethodHelper.userData = userData;
-      emit(FetchUserDataSuccessState());
-    } catch (error) {
-      if (error is DioExceptions) {
+    var userData = await _getUserUseCase.invoke();
+    switch (userData) {
+      case Success<UserDataEntity?>():
+        ExamMethodHelper.userData = userData.data;
+        emit(FetchUserDataSuccessState());
+        break;
+      case Failure<UserDataEntity?>():
         emit(
           FetchUserDataFailureState(
             errorData:
-                error.responseException ??
-                ResponseException(code: 0, message: error.errorMessage),
+                userData.responseException ??
+                ResponseException(code: 0, message: userData.errorMessage),
           ),
         );
-      }
+        break;
     }
   }
 
