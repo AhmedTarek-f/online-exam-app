@@ -107,17 +107,31 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i508.ApiClient>(() => _i508.ApiClient(gh<_i361.Dio>()));
     gh.factory<_i40.ForgetPasswordEmailRemoteDataSource>(
-      () => _i120.ForgetPasswordEmailRemoteDataSourceImpl(
-        apiClient: gh<_i508.ApiClient>(),
-      ),
+      () =>
+          _i120.ForgetPasswordEmailRemoteDataSourceImpl(gh<_i508.ApiClient>()),
     );
     gh.factory<_i500.EditProfileRemoteDataSource>(
-      () => _i527.EditProfileRemoteDataSourceImpl(
-        apiClient: gh<_i508.ApiClient>(),
-      ),
+      () => _i527.EditProfileRemoteDataSourceImpl(gh<_i508.ApiClient>()),
+    );
+    gh.factory<_i879.SignupRemoteDataSource>(
+      () => _i354.SignupRemoteDataSourceImpl(gh<_i508.ApiClient>()),
     );
     gh.factory<_i684.LoginRemoteDataSource>(
-      () => _i221.LoginRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()),
+      () => _i221.LoginRemoteDataSourceImpl(gh<_i508.ApiClient>()),
+    );
+    gh.factory<_i449.EmailVerificationRemoteDataSource>(
+      () => _i40.EmailVerificationRemoteDataSourceImpl(gh<_i508.ApiClient>()),
+    );
+    gh.factory<_i415.SignupRepository>(
+      () => _i881.SignupRepositoryImpl(
+        signupRemoteDataSource: gh<_i879.SignupRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i470.ProfileRemoteDataSource>(
+      () => _i913.ProfileRemoteDataSourceImpl(gh<_i508.ApiClient>()),
+    );
+    gh.factory<_i787.ResetPasswordRemoteDataSource>(
+      () => _i442.ResetPasswordRemoteDataSourceImpl(gh<_i508.ApiClient>()),
     );
     gh.factory<_i499.ForgetPasswordEmailRepository>(
       () => _i543.ForgetPasswordEmailRepositoryImpl(
@@ -125,26 +139,22 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i40.ForgetPasswordEmailRemoteDataSource>(),
       ),
     );
-    gh.factory<_i879.SignupRemoteDataSource>(
-      () => _i354.SignupRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()),
+    gh.factory<_i139.SignupUseCase>(
+      () => _i139.SignupUseCase(gh<_i415.SignupRepository>()),
     );
-    gh.factory<_i787.ResetPasswordRemoteDataSource>(
-      () => _i442.ResetPasswordRemoteDataSourceImpl(
-        apiClient: gh<_i508.ApiClient>(),
-      ),
-    );
-    gh.factory<_i470.ProfileRemoteDataSource>(
-      () => _i913.ProfileRemoteDataSourceImpl(apiClient: gh<_i508.ApiClient>()),
-    );
-    gh.factory<_i449.EmailVerificationRemoteDataSource>(
-      () => _i40.EmailVerificationRemoteDataSourceImpl(
-        apiClient: gh<_i508.ApiClient>(),
+    gh.factory<_i167.EmailVerificationRepository>(
+      () => _i155.EmailVerificationRepositoryImpl(
+        emailVerificationRemoteDataSource:
+            gh<_i449.EmailVerificationRemoteDataSource>(),
       ),
     );
     gh.factory<_i157.EditProfileRepository>(
       () => _i216.EditProfileRepositoryImpl(
         editProfileRemoteDataSource: gh<_i500.EditProfileRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i751.SignUpCubit>(
+      () => _i751.SignUpCubit(gh<_i139.SignupUseCase>()),
     );
     gh.factory<_i300.LoginRepository>(
       () => _i722.LoginRepositoryImpl(
@@ -173,10 +183,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i690.ResetPasswordUseCase>(
       () => _i690.ResetPasswordUseCase(gh<_i884.ResetPasswordRepository>()),
     );
-    gh.factory<_i415.SignupRepository>(
-      () => _i881.SignupRepositoryImpl(
-        signupRemoteDataSource: gh<_i879.SignupRemoteDataSource>(),
-      ),
+    gh.factory<_i513.VerifyEmailUseCase>(
+      () => _i513.VerifyEmailUseCase(gh<_i167.EmailVerificationRepository>()),
     );
     gh.factory<_i197.LoginWithEmailAndPasswordUseCase>(
       () => _i197.LoginWithEmailAndPasswordUseCase(gh<_i300.LoginRepository>()),
@@ -188,18 +196,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i941.ResetPasswordCubit(
         resetPasswordUseCase: gh<_i690.ResetPasswordUseCase>(),
       ),
-    );
-    gh.factory<_i139.SignupUseCase>(
-      () => _i139.SignupUseCase(gh<_i415.SignupRepository>()),
-    );
-    gh.factory<_i167.EmailVerificationRepository>(
-      () => _i155.EmailVerificationRepositoryImpl(
-        emailVerificationRemoteDataSource:
-            gh<_i449.EmailVerificationRemoteDataSource>(),
-      ),
-    );
-    gh.factory<_i751.SignUpCubit>(
-      () => _i751.SignUpCubit(gh<_i139.SignupUseCase>()),
     );
     gh.factory<_i206.ForgetPasswordEmailCubit>(
       () => _i206.ForgetPasswordEmailCubit(
@@ -217,17 +213,14 @@ extension GetItInjectableX on _i174.GetIt {
         editProfileUseCase: gh<_i89.EditProfileUseCase>(),
       ),
     );
-    gh.factory<_i1028.ProfileCubit>(
-      () => _i1028.ProfileCubit(logoutUseCase: gh<_i217.LogoutUseCase>()),
-    );
-    gh.factory<_i513.VerifyEmailUseCase>(
-      () => _i513.VerifyEmailUseCase(gh<_i167.EmailVerificationRepository>()),
-    );
     gh.factory<_i533.EmailVerificationCubit>(
       () => _i533.EmailVerificationCubit(
         sendEmailVerificationUseCase: gh<_i808.SendEmailVerificationUseCase>(),
         verifyEmailUseCase: gh<_i513.VerifyEmailUseCase>(),
       ),
+    );
+    gh.factory<_i1028.ProfileCubit>(
+      () => _i1028.ProfileCubit(logoutUseCase: gh<_i217.LogoutUseCase>()),
     );
     return this;
   }
