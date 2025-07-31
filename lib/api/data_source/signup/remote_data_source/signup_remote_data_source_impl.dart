@@ -56,29 +56,3 @@ class SignupRemoteDataSourceImpl implements SignupRemoteDataSource {
     }
   }
 }
-
-// Future<UserLoginEntity?> signup({
-//   required String email,
-//   required String password,
-// }) async {
-//   try {
-//     final bool connection = await ConnectionManager.checkConnection();
-//     if (connection) {
-//       var response = await apiClient.login(
-//         request: LoginRequest(email: email, password: password),
-//       );
-//       ExamMethodHelper.currentUserToken = response.token;
-//       await SecureStorage.saveData(
-//         key: ConstKeys.tokenKey,
-//         value: response.token ?? "",
-//       );
-//       var userData = response.userLoginData?.toUserLoginEntity();
-//       ExamMethodHelper.userData = userData;
-//       return userData;
-//     } else {
-//       throw AppText.connectionValidation;
-//     }
-//   } catch (error) {
-//     throw DioExceptions.handleError(error);
-//   }
-// }

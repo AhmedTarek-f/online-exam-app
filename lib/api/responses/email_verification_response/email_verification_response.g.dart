@@ -7,9 +7,13 @@ part of 'email_verification_response.dart';
 // **************************************************************************
 
 EmailVerificationResponse _$EmailVerificationResponseFromJson(
-  Map<String, dynamic> json,
-) => EmailVerificationResponse(status: json['status'] as String?);
+        Map<String, dynamic> json) =>
+    EmailVerificationResponse(
+      status: json['status'] as String?,
+    );
 
 Map<String, dynamic> _$EmailVerificationResponseToJson(
-  EmailVerificationResponse instance,
-) => <String, dynamic>{'status': instance.status};
+        EmailVerificationResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+    };
