@@ -1,13 +1,7 @@
-import 'package:online_exam_app/domain/entities/login/user_login_entity.dart';
+import 'package:online_exam_app/api/client/api_result.dart';
+import 'package:online_exam_app/api/requests/signup_request/signup_request.dart';
+import 'package:online_exam_app/domain/entities/login/user_data_entity.dart';
 
 abstract class SignupRepository {
-  Future<UserLoginEntity?> signup({
-    required String username,
-    required String firstName,
-    required String lastName,
-    required String email,
-    required String password,
-    required String rePassword,
-    required String phone,
-  });
+  Future<Result<UserDataEntity?>> signup({required SignupRequest request});
 }

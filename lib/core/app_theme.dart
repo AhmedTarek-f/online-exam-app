@@ -16,6 +16,7 @@ abstract class AppTheme {
       primaryContainer: AppColors.red,
       seedColor: Colors.deepPurple,
       brightness: Brightness.light,
+      onPrimary: AppColors.blue,
     ),
     textTheme: TextTheme(
       titleLarge: TextStyle(

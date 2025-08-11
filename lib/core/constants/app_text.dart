@@ -32,6 +32,10 @@ abstract final class AppText {
   static const String survey = "Survey";
   static const String browseBySubject = "Browse by subject";
 
+  //Splash
+  static const tryAgain = "Try again";
+  static const reLogin = "Re-login";
+
   //Forget password
   static const forgetPassword2 = "Forget password";
   static const forgetPasswordMessage =
@@ -76,6 +80,17 @@ abstract final class AppText {
   static const String showResults = "Show results";
   static const String correctWithSpaces = "Correct   ";
   static const String incorrect = "Incorrect";
+
+  // profile
+  static const String passwordHint2 = "★★★★★★";
+  static const String change = "Change";
+  static const String update = "Update";
+  static const String logout = "Logout";
+
+  // Edit Profile
+  static const String editProfile = "Edit profile";
+  static const String editProfileSuccessMessage =
+      "Your profile has been successfully updated";
 
   // Validations
   static const String connectionValidation =

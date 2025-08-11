@@ -4,4 +4,5 @@ abstract final class AppIcons {
   static const String resultsBarIcon = 'assets/icons/results_bar_icon.svg';
   static const String profileNavBarIcon = 'assets/icons/profile_bar.svg';
   static const String sandWatchIcon = "assets/icons/sand_watch.svg";
+  static const String camera = 'assets/icons/camera.svg';
 }

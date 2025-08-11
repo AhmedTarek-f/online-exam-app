@@ -7,6 +7,10 @@ import 'package:online_exam_app/presentation/auth/forget_password/forget_passwor
 import 'package:online_exam_app/presentation/auth/forget_password/reset_password/views/reset_password_view.dart';
 import 'package:online_exam_app/presentation/auth/login/views/login_view.dart';
 import 'package:online_exam_app/presentation/auth/signup/views/sign_up_screen.dart';
+import 'package:online_exam_app/presentation/dashboard/presentation/screens/dashboard_screen.dart';
+import 'package:online_exam_app/presentation/edit_profile/views/edit_profile_view.dart';
+import 'package:online_exam_app/presentation/profile/views_model/profile_cubit.dart';
+
 import 'package:online_exam_app/presentation/splash/presentation/views/splash_screen.dart';
 
 import '../../presentation/dashboard/presentation/cubits/home_cubit.dart';
@@ -21,7 +25,7 @@ abstract class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteNames.splash:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashView());
       case RouteNames.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case RouteNames.forgetPasswordEmail:
@@ -41,6 +45,7 @@ abstract class AppRouter {
           builder: (_) => ResetPasswordView(userEmail: email),
         );
       case RouteNames.dashboard:
+
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (_) => getIt<NavBarCubit>(),
@@ -62,9 +67,17 @@ abstract class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const QuestionScreen(),
         );
+
+        return MaterialPageRoute(builder: (_) => const DashboardScreen());
+      case RouteNames.editProfile:
+        final ProfileCubit profileController =
+            settings.arguments as ProfileCubit;
+        return MaterialPageRoute(
+          builder: (_) => EditProfileView(profileController: profileController),
+        );
+
       default:
         return MaterialPageRoute(builder: (_) => const LoginView());
     }
-    return null;
   }
 }

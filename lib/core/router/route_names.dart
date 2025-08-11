@@ -9,4 +9,5 @@ abstract class RouteNames {
   static const String homeView = '/homeView';
   static const String profileView = '/profileView';
   static const String questionView = '/questionView';
+  static const String editProfile = '/editProfileView';
 }
