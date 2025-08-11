@@ -23,6 +23,8 @@ import '../../api/data_source/forget_password/reset_password/remote_data_source/
     as _i442;
 import '../../api/data_source/login/remote_data_source/login_remote_data_source_impl.dart'
     as _i221;
+import '../../api/data_source/question/question_remote_data_source_impl/question_remote_data_source_impl.dart'
+    as _i249;
 import '../../api/data_source/signup/remote_data_source/signup_remote_data_source_impl.dart'
     as _i354;
 import '../../data/data_source/forget_password/email_verification/remote_data_source/email_verification_remote_data_source.dart'
@@ -33,6 +35,8 @@ import '../../data/data_source/forget_password/reset_password/remote_data_source
     as _i787;
 import '../../data/data_source/login/remote_data_source/login_remote_data_source.dart'
     as _i684;
+import '../../data/data_source/question/remote_data_source/question_remote_data_source.dart'
+    as _i769;
 import '../../data/data_source/signup/remote_data_source/signup_remote_data_source.dart'
     as _i879;
 import '../../data/repositories/forget_password/email_verification_repository_impl.dart'
@@ -72,6 +76,7 @@ import '../../presentation/dashboard/presentation/cubits/home_cubit.dart'
     as _i69;
 import '../../presentation/dashboard/presentation/cubits/nav_bar_cuibts/nav_bar_cubit.dart'
     as _i826;
+import '../../presentation/question/view_model/question_cubit.dart' as _i557;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -86,8 +91,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final apiModule = _$ApiModule();
     gh.singleton<_i361.Dio>(() => apiModule.provideDio());
-    gh.lazySingleton<_i69.HomeCubit>(() => _i69.HomeCubit());
     gh.lazySingleton<_i826.NavBarCubit>(() => _i826.NavBarCubit());
+    gh.lazySingleton<_i69.HomeCubit>(() => _i69.HomeCubit());
     gh.factory<_i508.ApiClient>(() => _i508.ApiClient(gh<_i361.Dio>()));
     gh.factory<_i40.ForgetPasswordEmailRemoteDataSource>(() =>
         _i120.ForgetPasswordEmailRemoteDataSourceImpl(
@@ -103,6 +108,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i787.ResetPasswordRemoteDataSource>(() =>
         _i442.ResetPasswordRemoteDataSourceImpl(
             apiClient: gh<_i508.ApiClient>()));
+    gh.factory<_i769.QuestionRemoteDataSource>(
+        () => _i249.QuestionRemoteDataSourceImpl(gh<_i508.ApiClient>()));
     gh.factory<_i449.EmailVerificationRemoteDataSource>(() =>
         _i40.EmailVerificationRemoteDataSourceImpl(
             apiClient: gh<_i508.ApiClient>()));
@@ -121,6 +128,8 @@ extension GetItInjectableX on _i174.GetIt {
         signupRemoteDataSource: gh<_i879.SignupRemoteDataSource>()));
     gh.factory<_i197.LoginWithEmailAndPasswordUseCase>(() =>
         _i197.LoginWithEmailAndPasswordUseCase(gh<_i300.LoginRepository>()));
+    gh.lazySingleton<_i557.QuestionCubit>(
+        () => _i557.QuestionCubit(gh<_i769.QuestionRemoteDataSource>()));
     gh.factory<_i941.ResetPasswordCubit>(() => _i941.ResetPasswordCubit(
         resetPasswordUseCase: gh<_i690.ResetPasswordUseCase>()));
     gh.factory<_i139.SignupUseCase>(

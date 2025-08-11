@@ -65,5 +65,17 @@ abstract class AppTheme {
       selectionHandleColor: AppColors.primary,
       selectionColor: AppColors.primary.withValues(alpha: 0.2),
     ),
+    elevatedButtonTheme:  ElevatedButtonThemeData(
+       style:  ElevatedButton.styleFrom(
+         backgroundColor: AppColors.primary,
+         foregroundColor: AppColors.white,
+         shape: RoundedRectangleBorder(
+           borderRadius: BorderRadius.circular(4.r),
+         ),
+         minimumSize: const Size(double.infinity, 48),
+         elevation: 0,
+         shadowColor: Colors.transparent,
+       )
+    ),
   );
 }

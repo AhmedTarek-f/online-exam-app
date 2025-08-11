@@ -10,7 +10,7 @@ class ResetPasswordAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return const CustomAppBar(
-      leading: CustomBackArrow(),
+      isBackButtonExist: true,
       title: AppText.resetPassword,
     );
   }

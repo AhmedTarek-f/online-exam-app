@@ -13,6 +13,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.borderColor,
     this.isText = true,
     this.child,
+    this.borderRadius,
   });
 
   final void Function()? onPressed;
@@ -23,6 +24,8 @@ class CustomElevatedButton extends StatelessWidget {
   final Color? borderColor;
   final bool isText;
   final Widget? child;
+  final double? borderRadius;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -32,7 +35,7 @@ class CustomElevatedButton extends StatelessWidget {
             backgroundColor ?? Theme.of(context).colorScheme.primary,
         shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100.r),
+          borderRadius: BorderRadius.circular(borderRadius ?? 100.r),
         ),
         minimumSize: Size(width ?? ScreenUtil().screenWidth, height ?? 48.h),
         side: borderColor != null ? BorderSide(color: borderColor!) : null,

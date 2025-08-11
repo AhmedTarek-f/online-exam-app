@@ -8,4 +8,5 @@ abstract class RouteNames {
   static const String dashboard = '/dashboardView';
   static const String homeView = '/homeView';
   static const String profileView = '/profileView';
+  static const String questionView = '/questionView';
 }

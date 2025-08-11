@@ -55,6 +55,27 @@ abstract final class AppText {
   static const String confirmPassword = "Confirm password";
   static const String resetPasswordSuccess =
       "Your password has been successfully reset";
+// Questions
+  static const String exam = "Exam";
+  static const String question = "Question";
+  static const String questions = "Questions";
+  static const String answers = "Answers";
+  static const String noAnswer = "No answer";
+  static const String back = "Back";
+  static const String next = "Next";
+  static const String submit = "Submit";
+  static const String skip = "Skip";
+  static const String result = "Result";
+  static const String yourScore = "Your score";
+  static const String correct = "Correct";
+  static const String wrong = "Wrong";
+  static const String answer = "Answer";
+  static const String viewScore = "View score";
+  static const String examScore = "Exam Score";
+  static const String startAgain = "Start again";
+  static const String showResults = "Show results";
+  static const String correctWithSpaces = "Correct   ";
+  static const String incorrect = "Incorrect";
 
   // Validations
   static const String connectionValidation =

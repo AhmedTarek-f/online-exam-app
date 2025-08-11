@@ -5,4 +5,5 @@ abstract class Endpoints {
   static const String forgotPasswordUri = '/api/v1/auth/forgotPassword';
   static const String verifyResetCodeUri = '/api/v1/auth/verifyResetCode';
   static const String resetPasswordUri = '/api/v1/auth/resetPassword';
+  static const String questionsUri = '/api/v1/questions';
 }

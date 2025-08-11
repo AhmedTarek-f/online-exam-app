@@ -7,13 +7,15 @@ import 'package:online_exam_app/presentation/auth/forget_password/forget_passwor
 import 'package:online_exam_app/presentation/auth/forget_password/reset_password/views/reset_password_view.dart';
 import 'package:online_exam_app/presentation/auth/login/views/login_view.dart';
 import 'package:online_exam_app/presentation/auth/signup/views/sign_up_screen.dart';
-import 'package:online_exam_app/presentation/dashboard/presentation/screens/dashboard_screen.dart';
-import 'package:online_exam_app/presentation/dashboard/presentation/screens/profile_screen.dart';
 import 'package:online_exam_app/presentation/splash/presentation/views/splash_screen.dart';
 
 import '../../presentation/dashboard/presentation/cubits/home_cubit.dart';
 import '../../presentation/dashboard/presentation/cubits/nav_bar_cuibts/nav_bar_cubit.dart';
+import '../../presentation/dashboard/presentation/screens/dashboard_screen.dart';
 import '../../presentation/dashboard/presentation/screens/home_screen.dart';
+import '../../presentation/dashboard/presentation/screens/profile_screen.dart';
+import '../../presentation/question/question_screen.dart';
+import '../../presentation/question/view_model/question_cubit.dart';
 
 abstract class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -42,7 +44,7 @@ abstract class AppRouter {
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (_) => getIt<NavBarCubit>(),
-                  child: DashboardScreen(),
+                  child: const DashboardScreen(),
                 ));
       case RouteNames.homeView:
         return MaterialPageRoute(
@@ -56,7 +58,10 @@ abstract class AppRouter {
                   create: (_) => getIt<HomeCubit>(),
                   child: const ProfileScreen(),
                 ));
-
+      case RouteNames.questionView:
+        return MaterialPageRoute(
+          builder: (_) => const QuestionScreen(),
+        );
       default:
         return MaterialPageRoute(builder: (_) => const LoginView());
     }

@@ -7,7 +7,7 @@ class LoginAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomAppBar(title: AppText.login, centerTitle: true);
+    return const CustomAppBar(title: AppText.login);
   }
 
   @override

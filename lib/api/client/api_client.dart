@@ -13,6 +13,9 @@ import 'package:online_exam_app/api/responses/signup_response/signup_response.da
 import 'package:online_exam_app/core/constants/endpoints.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../requests/question_request/question_request.dart';
+import '../responses/question/question_response.dart';
+
 part 'api_client.g.dart';
 
 @injectable
@@ -33,6 +36,7 @@ abstract class ApiClient {
   Future<EmailVerificationResponse> verifyEmailCode({
     @Body() required EmailVerificationRequest request,
   });
+
   @POST(Endpoints.signUpUri)
   Future<SignupResponse> signup({@Body() required SignupRequest request});
 
@@ -40,4 +44,8 @@ abstract class ApiClient {
   Future<ResetPasswordResponse> resetPassword({
     @Body() required ResetPasswordRequest request,
   });
+
+  @GET(Endpoints.questionsUri)
+  Future<QuestionResponse> getQuestions(
+      @Header("token") String token, @Query("exam_id") String examId);
 }

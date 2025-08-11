@@ -7,7 +7,7 @@ class SignupAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomAppBar(title: AppText.signup, centerTitle: true);
+    return const CustomAppBar(title: AppText.signup);
   }
 
   @override
