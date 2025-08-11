@@ -37,9 +37,12 @@ class MockEditProfileUseCase extends _i1.Mock
   @override
   _i3.Future<void> invoke({required _i4.EditProfileRequest? request}) =>
       (super.noSuchMethod(
-            Invocation.method(#invoke, [], {#request: request}),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+        Invocation.method(
+          #invoke,
+          [],
+          {#request: request},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

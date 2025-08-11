@@ -9,7 +9,7 @@ class EditProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return const CustomAppBar(
-      leading: CustomBackArrow(),
+      isBackButtonExist: true,
       title: AppText.editProfile,
     );
   }

@@ -7,5 +7,9 @@ part 'nav_bar_state.dart';
 class NavBarCubit extends Cubit<NavBarState> {
   NavBarCubit() : super(const NavBarInitial(0));
 
-  void changeTab(int index) => emit(NavBarInitial(index));
+  void changeTab(int index) {
+    if (!isClosed) {
+      emit(NavBarInitial(index));
+    }
+  }
 }

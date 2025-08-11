@@ -37,9 +37,12 @@ class MockEditProfileRemoteDataSourceImpl extends _i1.Mock
   @override
   _i3.Future<void> editProfile({required _i4.EditProfileRequest? request}) =>
       (super.noSuchMethod(
-            Invocation.method(#editProfile, [], {#request: request}),
-            returnValue: _i3.Future<void>.value(),
-            returnValueForMissingStub: _i3.Future<void>.value(),
-          )
-          as _i3.Future<void>);
+        Invocation.method(
+          #editProfile,
+          [],
+          {#request: request},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

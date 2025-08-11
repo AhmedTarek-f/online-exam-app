@@ -47,10 +47,7 @@ abstract class AppRouter {
       case RouteNames.dashboard:
 
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (_) => getIt<NavBarCubit>(),
-                  child: const DashboardScreen(),
-                ));
+            builder: (_) => const DashboardScreen());
       case RouteNames.homeView:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
