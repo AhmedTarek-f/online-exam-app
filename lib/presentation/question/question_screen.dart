@@ -101,11 +101,21 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     height: 130.h,
                     width: 130.w,
                   ),
+              Text(
+                    "Time's out !!",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.red,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
                 ],
               ),
               actions: [
                 CustomElevatedButton(
                   onPressed: () {
+                    Navigator.pop(context);
                         Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
