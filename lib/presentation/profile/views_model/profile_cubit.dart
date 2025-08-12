@@ -9,6 +9,9 @@ import 'package:online_exam_app/utils/exam_method_helper.dart';
 import 'package:online_exam_app/utils/exceptions/dio_exceptions.dart';
 import 'package:online_exam_app/utils/exceptions/response_exception.dart';
 
+import '../../../core/router/route_names.dart';
+import '../../../utils/secure_storage/navigation_helper.dart';
+
 @injectable
 class ProfileCubit extends Cubit<ProfileState> {
   @factoryMethod
@@ -21,6 +24,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   late final TextEditingController emailController;
   late final TextEditingController phoneController;
   late final TextEditingController passwordController;
+  late final NavigationHelper navigationHelper;
 
   Future<void> doIntent({required ProfileIntent intent}) async {
     switch (intent) {
@@ -43,6 +47,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     emailController = TextEditingController();
     phoneController = TextEditingController();
     passwordController = TextEditingController();
+    navigationHelper = NavigationHelper();
     _initializeUserDataFields();
   }
 
@@ -60,6 +65,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(LogoutLoadingState());
       await logoutUseCase.invoke();
       emit(LogoutSuccessState());
+     await navigationHelper.logoutAndNavigateToLogin();
     } catch (error) {
       if (error is DioExceptions) {
         emit(

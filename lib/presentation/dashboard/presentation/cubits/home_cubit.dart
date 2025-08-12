@@ -11,7 +11,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   HomeCubit() : super(HomeInitial());
 
-  void changeTab(int index) {
+   changeTab(int index) {
     _currentIndex = index;
     emit(HomeTabChanged(index));
   }

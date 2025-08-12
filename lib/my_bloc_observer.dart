@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyBlocObserver extends BlocObserver {
@@ -11,7 +12,7 @@ class MyBlocObserver extends BlocObserver {
 
   @override
   void onChange(BlocBase bloc, Change change) {
-    log('🔄 ${bloc.runtimeType} state changed: $change');
+    if (kDebugMode) log('🔄 ${bloc.runtimeType} state changed: $change');
     super.onChange(bloc, change);
   }
 
