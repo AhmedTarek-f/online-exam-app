@@ -9,3 +9,17 @@ final class HomeTabChanged extends HomeState {
 
   HomeTabChanged(this.index);
 }
+
+final class HomeLoadingState extends HomeState {}
+
+final class HomeErrorState extends HomeState {
+  final String? errorMessage;
+
+  HomeErrorState({required this.errorMessage});
+}
+
+final class HomeSuccessState extends HomeState {
+  final List<SubjectsEntity> subjects;
+
+  HomeSuccessState(this.subjects);
+}

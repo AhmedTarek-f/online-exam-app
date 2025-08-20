@@ -89,4 +89,11 @@ abstract class Loaders {
       leftBarIndicatorColor: Colors.red,
     ).show(context);
   }
+  static showLoader({required BuildContext context}) {
+    return Center(
+      child: CircularProgressIndicator(
+        color: Theme.of(context).colorScheme.primary,
+      ),
+    );
+  }
 }
